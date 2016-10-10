@@ -1,4 +1,4 @@
-# Thinkful Full Stack Template
+# Feel Good 
 
 A template for developing and deploying full stack JavaScript apps.  Supports ES2015 on the client and server-side.
 
