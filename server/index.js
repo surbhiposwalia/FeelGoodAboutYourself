@@ -11,7 +11,6 @@ const app = express();
 
 app.use(express.static(process.env.CLIENT_PATH));
 
-//mongoose.Promise = global.Promise; //why does this make it work?
 
 var runServer = function(callback) {
     var databaseUri = process.env.DATABASE_URI || global.databaseUri || 'mongodb://localhost/FeelsGood';
