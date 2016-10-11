@@ -8,7 +8,7 @@
   "scripts": {
     "start": "[ \"$NODE_ENV\" = \"production\" ] && npm run serve:server:production || npm run serve:server:dev",
     "dev": "run-p watch serve:server:dev",
-    "test": "mocha --recursive",
+    "test": "NODE_ENV=development CLIENT_PATH=build/dev/client mocha --compilers js:babel-core/register --recursive",
     "repl": "babel-node",
     "build": "run-s build:*",
     "clean": "rm -rf build",
@@ -70,6 +70,8 @@
     "babel-polyfill": "^6.13.0",
     "babel-preset-es2015": "^6.13.1",
     "babel-preset-react": "^6.11.1",
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
     "chokidar-cli": "^1.2.0",
     "clean-css": "^3.4.19",
     "json": "^9.0.4",
@@ -78,6 +80,7 @@
     "node-sass": "^3.8.0",
     "nodemon": "^1.10.0",
     "npm-run-all": "^3.0.0",
+    "url-pattern": "^1.0.1",
     "webpack": "^1.13.1"
   },
   "dependencies": {
