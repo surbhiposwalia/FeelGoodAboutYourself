@@ -23,10 +23,10 @@ function randomThought() {
 
 //actions to fetch thoughts (sync)
 var FETCH_THOUGHTS_SUCCESS = 'FETCH_THOUGHTS_SUCCESS';
-function fetchThoughtsSuccess(thought) {
+function fetchThoughtsSuccess(thoughts) {
     return {
         type: FETCH_THOUGHTS_SUCCESS,
-        payload: thought
+        payload: thoughts
     };
 }
 
@@ -38,18 +38,10 @@ function fetchThoughtsError(error) {
     };
 }
 
-var FETCH_THOUGHTS_REQUEST = 'FETCH_THOUGHTS_REQUEST';
-function fetchThoughtsRequest() {
-    return {
-        type: FETCH_THOUGHTS_REQUEST
-    };
-}
-
 //action to fetch thought endpoint for API (async)
 function fetchThoughts() {
     return function(dispatch) {
         var endpoint = '/thoughts';
-        dispatch(fetchThoughtsRequest());
         return fetch(endpoint)
             .then(function(res) {
                 if(res.status < 200 || res.status >= 300) {
@@ -117,8 +109,5 @@ exports.fetchThoughtsSuccess = fetchThoughtsSuccess;
 
 exports.FETCH_THOUGHTS_ERROR = FETCH_THOUGHTS_ERROR;
 exports.fetchThoughtsError = fetchThoughtsError;
-
-exports.FETCH_THOUGHTS_REQUEST = FETCH_THOUGHTS_REQUEST;
-exports.fetchThoughtsRequest = fetchThoughtsRequest;
 
 exports.fetchThoughts = fetchThoughts;
