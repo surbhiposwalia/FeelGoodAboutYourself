@@ -8,7 +8,6 @@ thoughts: [] //needs to get the list of thoughts from the database
 
 */
 
-
 //action for random thought
 var RANDOM_THOUGHT = 'RANDOM_THOUGHT';
 function randomThought() {
@@ -16,6 +15,11 @@ function randomThought() {
         type: RANDOM_THOUGHT
     };
 }
+
+//Do I really need these 3 sync functions to get the async function running smoothly? (I feel like I don't need request...)
+//How do we take the input from the register functionality and store that in the database?
+//How do we input information from the front end and save it to the back end?
+//Because we have to input a thought from the front end and save it to the database...
 
 //actions to fetch thoughts (sync)
 var FETCH_THOUGHTS_SUCCESS = 'FETCH_THOUGHTS_SUCCESS';
@@ -65,6 +69,44 @@ function fetchThoughts() {
         });
     };
 }
+
+//Is this how to save information to the database?
+
+// var SAVE_FEWEST_GUESSES = SAVE_FEWEST_GUESSES;
+// var saveFewestGuesses = function(currentCount) {
+//     return function(dispatch){
+//         console.log(currentCount);
+//     var url='https://redux-michellen.c9users.io/fewest-guesses';
+//         fetch(url,{
+//             method:'post',
+//             headers: {
+//                 'Accept': 'application/json',
+//                 'Content-Type': 'application/json'
+//             },
+//             body:JSON.stringify({
+//                 currentGuess:currentCount
+//             })}).then(function(res){
+//             if (res.status < 200 || res.status >= 300) {
+//                 var error = new Error(res.statusText)
+//                 error.res = res
+//                 throw error;
+//             }
+//             return res;
+//         }).then(function(res){
+            
+//             return res.json();
+//         }).then(function(data){
+//              console.log( "inside saveFewestGuesses",data);
+//             var fewestGuess = data.fewestGuess;
+           
+//             return dispatch(fetchFewestGuessesSuccess(fewestGuess))
+//         })
+//         .catch(function(error){
+//             return dispatch(fetchFewestGuessesError(error));
+//         });
+            
+//     }
+// }
 
 
 exports.RANDOM_THOUGHT = RANDOM_THOUGHT;
