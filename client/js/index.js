@@ -1,5 +1,5 @@
 import 'babel-polyfill';
-//import store
+//import store here
 
 
 console.log(`Client running in ${process.env.NODE_ENV} mode`);
