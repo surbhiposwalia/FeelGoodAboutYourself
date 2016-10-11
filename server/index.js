@@ -7,6 +7,7 @@ import User from './models/user';
 var jsonParser = bodyParser.json();
 import Thought from './models/thought';
 import bcrypt from 'bcryptjs';
+mongoose.Promise= global.Promise;
 
 import usersRouter from './usersRouter';
 import thoughtsRouter from './thoughtsRouter'
