@@ -8,6 +8,7 @@ var initialState = {
     currentUser: null,
     basicAuth: null,
     error: null,
+    currentThought: "",
     //what other things in state do I need?
 };
 
@@ -54,6 +55,11 @@ var thoughtReducer = function(state = initialState, action) { //ES6 babyyyyy
             return Object.assign({}, state, {
                 currentUser: null,
                 isLoggedIn:false
+            });
+            
+        case actions.SELECT_THOUGHT:
+            return Object.assign({}, state, {
+                currentThought: action.payload
             });
             
         default:

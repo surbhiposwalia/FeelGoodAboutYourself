@@ -10,7 +10,7 @@ var actions = require('./actions');
 var store = createStore(thoughtReducer, applyMiddleware(thunk));
 
 store.dispatch(actions.fetchThoughts()); //test
-store.dispatch(actions.createSessionAsync("user8191", "password"));
+store.dispatch(actions.createSessionAsync("user6530", "password"));
 
 
 module.exports = store;

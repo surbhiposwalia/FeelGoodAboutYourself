@@ -1,5 +1,13 @@
 var fetch = require('isomorphic-fetch');
 
+var SELECT_THOUGHT = 'SELECT_THOUGHT';
+function selectThought(thought) {
+    return {
+        type: SELECT_THOUGHT,
+        payload: thought
+    };
+}
+
 //actions to fetch thoughts (sync)
 var FETCH_THOUGHTS_SUCCESS = 'FETCH_THOUGHTS_SUCCESS';
 function fetchThoughtsSuccess(thoughts) {
@@ -197,6 +205,9 @@ exports.createSessionAsync = createSessionAsync;
 
 exports.DESTROY_SESSION = DESTROY_SESSION;
 exports.destroySession = destroySession;
+
+exports.SELECT_THOUGHT = SELECT_THOUGHT;
+exports.selectThought = selectThought;
 
 // exports.DESTROY_SESSION_ERROR = DESTROY_SESSION_ERROR;
 // exports.destroySessionError = destroySessionError;

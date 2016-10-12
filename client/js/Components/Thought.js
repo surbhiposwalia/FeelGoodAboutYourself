@@ -17,9 +17,8 @@ import Error from './Error';
   
 var Thought = React.createClass({
     randomThought: function(){
-    const random=Math.floor(Math.random()*this.props.thought.length);
-     return   this.props.thoughts[random];
-    
+        const random=Math.floor(Math.random()*this.props.thoughts.length);
+        this.props.dispatch(actions.selectThought(this.props.thoughts[random].thought));
     },
     
     render: function(){
@@ -36,9 +35,9 @@ var Thought = React.createClass({
                 </nav>
                 
                 <main>
-                    <h1>Thought of the Day</h1><br />
+                    <h1>Thought: {this.props.currentThought}</h1><br />
                     <Link to="/addThought">
-                        Wanna add a new thought??
+                        Want to add a thought?
                     </Link> <input type = 'button' value="Change the Thought" onClick={this.randomThought} />
                 </main>
         </div>
@@ -51,19 +50,20 @@ var Thought = React.createClass({
 
 let mapStateToProps= function(state, props){
     return{
-    isLoggedIn: state.isLoggedIn, 
-    thoughts: state.thoughts, 
-    currentUser: state.currentUser,
-    basicAuth: state.basicAuth,
-    error: state.error
-    }
-}
+        isLoggedIn: state.isLoggedIn, 
+        thoughts: state.thoughts, 
+        currentUser: state.currentUser,
+        basicAuth: state.basicAuth,
+        error: state.error,
+        currentThought: state.currentThought,
+    };
+};
 
-const Container = (mapStateToProps)(Thought)
+export default connect(mapStateToProps)(Thought);
 
+// const Container = (mapStateToProps)(Thought);
 
-
-export default Thought;// should be container when adding redux
+// export default Container;// should be container when adding redux
 
 //if isLoggedIn == true then , on home page add link to logout;
 
