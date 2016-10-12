@@ -37,8 +37,10 @@ var thoughtReducer = function(state = initialState, action) { //ES6 babyyyyy
             
         case actions.CREATE_SESSION_SUCCESS:
             // return state object with currentUser: action.payload.username, basicAuth: action.payload.basicAuth
+           console.log(state);
             return Object.assign({}, state, {
-                currentUser: action.payload
+                currentUser: action.payload,
+                isLoggedIn:true
             });
         
         case actions.CREATE_SESSION_ERROR:
@@ -50,7 +52,8 @@ var thoughtReducer = function(state = initialState, action) { //ES6 babyyyyy
         case actions.DESTROY_SESSION:
             // return state object currentUser: null
             return Object.assign({}, state, {
-                currentUser: null
+                currentUser: null,
+                isLoggedIn:false
             });
             
         default:
@@ -59,3 +62,4 @@ var thoughtReducer = function(state = initialState, action) { //ES6 babyyyyy
 };
 
 exports.thoughtReducer = thoughtReducer;
+

@@ -137,7 +137,6 @@ var createSessionAsync = function(username, password) {
             })
             .then(response => {
                 //if success, dispatch addThoughtSuccess(response);
-                console.log("All OK" + response);
                 return dispatch(createSessionSuccess(username));
             })
         .catch(err => {
