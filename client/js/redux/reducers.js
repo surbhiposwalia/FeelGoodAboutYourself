@@ -8,13 +8,13 @@ var initialState = {
     error: null,
     //what other things in state do I need?
     //do I need seperate actions/reducers/store for thoughts and users?
-    //how do I pull my information from my database, select one random element from that array of thoughts, and show that one element? 
 };
 
 var thoughtReducer = function(state = initialState, action) { //ES6 babyyyyy
     //state = state || initialState;
     switch(action.type) {
         case actions.FETCH_THOUGHTS_SUCCESS:
+            console.log(action.payload);
             return Object.assign({}, state, {
                 thoughts: action.payload
             });
@@ -23,6 +23,7 @@ var thoughtReducer = function(state = initialState, action) { //ES6 babyyyyy
             return Object.assign({}, state, {
                 error: action.error
             });
+            
         default:
             return state;
     }

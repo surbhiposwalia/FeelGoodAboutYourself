@@ -1,22 +1,5 @@
 var fetch = require('isomorphic-fetch');
 
-/*
-
-state:
-isLoggedIn: false; //once the user is logged in, isLoggedIn = true;
-thoughts: [] //needs to get the list of thoughts from the database
-
-*/
-
-//action for random thought
-var RANDOM_THOUGHT = 'RANDOM_THOUGHT';
-function randomThought() {
-    return {
-        type: RANDOM_THOUGHT
-    };
-}
-
-//Do I really need these 3 sync functions to get the async function running smoothly? (I feel like I don't need request...)
 //How do we take the input from the register functionality and store that in the database?
 //How do we input information from the front end and save it to the back end?
 //Because we have to input a thought from the front end and save it to the database...
@@ -61,6 +44,47 @@ function fetchThoughts() {
         });
     };
 }
+
+var ADD_THOUGHT_SUCCESS = 'ADD_THOUGHT_SUCCESS';
+var addThoughtSuccess = function(thought){
+    return {
+        type: ADD_THOUGHT_SUCCESS,
+        payload: thought
+    };
+};
+
+var ADD_THOUGHT_ERROR = 'ADD_THOUGHT_ERROR';
+var addThoughtError = function(error){
+    return {
+        type: ADD_THOUGHT_ERROR,
+        error: error
+    };
+};
+
+var addThoughtAsync = function(){
+    return function(dispatch) {
+        // make POST request to Api
+        fetch('endpoint')
+            .then(response = response.json())
+            .then(response => {
+                console.log(response.status);
+                dispatch(addThoughtSuccess(response.data))
+            })
+            .catch(err => console.log(err));
+            
+        // if success, dispatch addThoughtSuccess(response);
+        // if fail, dispatch addThoughtFail(error);
+    };
+};
+
+
+//CREATE_SESSION_SUCCESS
+//CREATE_SESSION_FAIL
+//createSessionAsync
+
+//DESTROY_SESSION_SUCCESS
+//DESTROY_SESSION_FAIL
+//destorySessionAsync
 
 //Is this how to save information to the database?
 
