@@ -1,9 +1,5 @@
 var fetch = require('isomorphic-fetch');
 
-//How do we take the input from the register functionality and store that in the database?
-//How do we input information from the front end and save it to the back end?
-//Because we have to input a thought from the front end and save it to the database...
-
 //actions to fetch thoughts (sync)
 var FETCH_THOUGHTS_SUCCESS = 'FETCH_THOUGHTS_SUCCESS';
 function fetchThoughtsSuccess(thoughts) {
