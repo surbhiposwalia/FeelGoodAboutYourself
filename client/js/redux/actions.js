@@ -79,12 +79,57 @@ var addThoughtAsync = function(){
 
 
 //CREATE_SESSION_SUCCESS
-//CREATE_SESSION_FAIL
-//createSessionAsync
+var CREATE_SESSION_SUCCESS = 'CREATE_SESSION_SUCCESS';
+var createSessionSuccess = function(user) {
+    return {
+        type: CREATE_SESSION_SUCCESS,
+        payload: user
+    };
+};
+
+//CREATE_SESSION_ERROR
+var CREATE_SESSION_ERROR = 'CREATE_SESSION_ERROR';
+var createSessionError = function(error) {
+    return {
+        type: CREATE_SESSION_ERROR,
+        error: error
+    };
+};
+
+//createSessionAsync (log in user)
+var createSessionAsync = function() {
+    return function(dispatch) {
+        
+    }
+}
 
 //DESTROY_SESSION_SUCCESS
-//DESTROY_SESSION_FAIL
-//destorySessionAsync
+var DESTROY_SESSION_SUCCESS = 'DESTROY_SESSION_SUCCESS';
+var destroySessionSuccess = function(user) {
+    return {
+        type: DESTROY_SESSION_SUCCESS,
+        payload: user
+    };
+};
+
+//DESTROY_SESSION_ERROR
+var DESTROY_SESSION_ERROR = 'DESTROY_SESSION_ERROR';
+var destroySessionError = function(error) {
+    return {
+        type: DESTROY_SESSION_ERROR,
+        error: error
+    };
+};
+
+//destorySessionAsync (log out user)
+var destroySessionAsync = function() {
+    return function(dispatch) {
+        
+    }
+}
+
+
+
 
 //Is this how to save information to the database?
 
@@ -124,10 +169,6 @@ var addThoughtAsync = function(){
 //     }
 // }
 
-
-exports.RANDOM_THOUGHT = RANDOM_THOUGHT;
-exports.randomThought = randomThought;
-
 exports.FETCH_THOUGHTS_SUCCESS = FETCH_THOUGHTS_SUCCESS;
 exports.fetchThoughtsSuccess = fetchThoughtsSuccess;
 
@@ -135,3 +176,27 @@ exports.FETCH_THOUGHTS_ERROR = FETCH_THOUGHTS_ERROR;
 exports.fetchThoughtsError = fetchThoughtsError;
 
 exports.fetchThoughts = fetchThoughts;
+
+exports.ADD_THOUGHT_SUCCESS = ADD_THOUGHT_SUCCESS;
+exports.addThoughtSuccess = addThoughtSuccess;
+
+exports.ADD_THOUGHT_ERROR = ADD_THOUGHT_ERROR;
+exports.addThoughtError = addThoughtError;
+
+exports.addThoughtAsync = addThoughtAsync;
+
+exports.CREATE_SESSION_SUCCESS = CREATE_SESSION_SUCCESS;
+exports.createSessionSuccess = createSessionSuccess;
+
+exports.CREATE_SESSION_ERROR = CREATE_SESSION_ERROR;
+exports.createSessionError = createSessionError;
+
+exports.createSessionAsync = createSessionAsync;
+
+exports.DESTROY_SESSION_SUCCESS = DESTROY_SESSION_SUCCESS;
+exports.destroySessionSuccess = destroySessionSuccess;
+
+exports.DESTROY_SESSION_ERROR = DESTROY_SESSION_ERROR;
+exports.destroySessionError = destroySessionError;
+
+exports.destroySessionAsync = destroySessionAsync;
