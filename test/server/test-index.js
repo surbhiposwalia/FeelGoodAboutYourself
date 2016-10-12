@@ -1,12 +1,12 @@
-global.databaseUri = 'mongodb://localhost/FeelsGood-dev';
+global.databaseUri = 'mongodb://localhost/FeelsGood';
 
 var chai = require('chai');
 var chaiHttp = require('chai-http');
 var mongoose = require('mongoose');
 var UrlPattern = require('url-pattern');
-var app = require('../../server/models/index').app;
+var app = require('../../server/index').app;
 
-var User = require('../../server/models/usersRouter');
+var User = require('../../server/usersRouter');
 
 var makeSpy = require('./spy');
 
