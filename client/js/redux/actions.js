@@ -61,29 +61,48 @@ var addThoughtError = function(error){
     };
 };
 
-var addThoughtAsync = function(){
+var addThoughtAsync = function(thought, currentUser){
     return function(dispatch) {
         // make POST request to Api
-        fetch('endpoint')
-            .then(response = response.json())
-            .then(response => {
-                console.log(response.status);
-                dispatch(addThoughtSuccess(response.data))
+        var endpoint = '/thoughts';
+        fetch(endpoint, {
+            method:'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+        },
+                body:JSON.stringify({
+                thought: thought,
+                from: currentUser
+        })})
+            .then(function(res) {
+                if(res.status < 200 || res.status >= 300) {
+                    //bad response :(
+                    var error = new Error(res.statusText);
+                    error.res = res;
+                    throw error;
+                }
+                res = res.json();
             })
-            .catch(err => console.log(err));
-            
-        // if success, dispatch addThoughtSuccess(response);
-        // if fail, dispatch addThoughtFail(error);
+            .then(response => {
+                //if success, dispatch addThoughtSuccess(response);
+                console.log(response.status);
+                dispatch(addThoughtSuccess(response.data));
+            })
+        .catch(err => {
+            //if fail, dispatch addThoughtFail(error);
+            console.log(err);
+            dispatch(addThoughtError(err));
+        });
     };
 };
 
-
 //CREATE_SESSION_SUCCESS
 var CREATE_SESSION_SUCCESS = 'CREATE_SESSION_SUCCESS';
-var createSessionSuccess = function(user) {
+var createSessionSuccess = function(username) {
     return {
         type: CREATE_SESSION_SUCCESS,
-        payload: user
+        payload: username
     };
 };
 
@@ -97,75 +116,63 @@ var createSessionError = function(error) {
 };
 
 //createSessionAsync (log in user)
-var createSessionAsync = function() {
+var createSessionAsync = function(username, password) {
     return function(dispatch) {
-        
-    }
-}
-
-//DESTROY_SESSION_SUCCESS
-var DESTROY_SESSION_SUCCESS = 'DESTROY_SESSION_SUCCESS';
-var destroySessionSuccess = function(user) {
-    return {
-        type: DESTROY_SESSION_SUCCESS,
-        payload: user
+        var endpoint = '/users/login';
+        fetch(endpoint, {
+            method:'post',
+            //var headers = new headers
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+        },
+                body:JSON.stringify({
+                username: username,
+                password: password
+        })})
+            .then(function(res) {
+                if(res.status < 200 || res.status >= 300) {
+                    //bad response :(
+                    var error = new Error(res.statusText);
+                    error.res = res;
+                    throw error;
+                }
+                res = res.json();
+            })
+            .then(response => {
+                //if success, dispatch addThoughtSuccess(response);
+                console.log("All OK" + response);
+                return dispatch(createSessionSuccess(username));
+            })
+        .catch(err => {
+            //if fail, dispatch addThoughtFail(error);
+            console.log(err);
+            return dispatch(createSessionError(err));
+        });
     };
 };
 
-//DESTROY_SESSION_ERROR
-var DESTROY_SESSION_ERROR = 'DESTROY_SESSION_ERROR';
-var destroySessionError = function(error) {
+//DESTROY_SESSION
+var DESTROY_SESSION = 'DESTROY_SESSION';
+var destroySession = function() {
     return {
-        type: DESTROY_SESSION_ERROR,
-        error: error
+        type: DESTROY_SESSION,
     };
 };
 
-//destorySessionAsync (log out user)
-var destroySessionAsync = function() {
-    return function(dispatch) {
+// //DESTROY_SESSION_ERROR
+// var DESTROY_SESSION_ERROR = 'DESTROY_SESSION_ERROR';
+// var destroySessionError = function(error) {
+//     return {
+//         type: DESTROY_SESSION_ERROR,
+//         error: error
+//     };
+// };
+
+// //destorySessionAsync (log out user)
+// var destroySessionAsync = function() {
+//     return function(dispatch) {
         
-    }
-}
-
-
-
-
-//Is this how to save information to the database?
-
-// var SAVE_FEWEST_GUESSES = SAVE_FEWEST_GUESSES;
-// var saveFewestGuesses = function(currentCount) {
-//     return function(dispatch){
-//         console.log(currentCount);
-//     var url='https://redux-michellen.c9users.io/fewest-guesses';
-//         fetch(url,{
-//             method:'post',
-//             headers: {
-//                 'Accept': 'application/json',
-//                 'Content-Type': 'application/json'
-//             },
-//             body:JSON.stringify({
-//                 currentGuess:currentCount
-//             })}).then(function(res){
-//             if (res.status < 200 || res.status >= 300) {
-//                 var error = new Error(res.statusText)
-//                 error.res = res
-//                 throw error;
-//             }
-//             return res;
-//         }).then(function(res){
-            
-//             return res.json();
-//         }).then(function(data){
-//              console.log( "inside saveFewestGuesses",data);
-//             var fewestGuess = data.fewestGuess;
-           
-//             return dispatch(fetchFewestGuessesSuccess(fewestGuess))
-//         })
-//         .catch(function(error){
-//             return dispatch(fetchFewestGuessesError(error));
-//         });
-            
 //     }
 // }
 
@@ -193,10 +200,10 @@ exports.createSessionError = createSessionError;
 
 exports.createSessionAsync = createSessionAsync;
 
-exports.DESTROY_SESSION_SUCCESS = DESTROY_SESSION_SUCCESS;
-exports.destroySessionSuccess = destroySessionSuccess;
+exports.DESTROY_SESSION = DESTROY_SESSION;
+exports.destroySession = destroySession;
 
-exports.DESTROY_SESSION_ERROR = DESTROY_SESSION_ERROR;
-exports.destroySessionError = destroySessionError;
+// exports.DESTROY_SESSION_ERROR = DESTROY_SESSION_ERROR;
+// exports.destroySessionError = destroySessionError;
 
-exports.destroySessionAsync = destroySessionAsync;
+// exports.destroySessionAsync = destroySessionAsync;

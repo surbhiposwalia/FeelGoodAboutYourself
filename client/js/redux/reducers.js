@@ -6,16 +6,15 @@ var initialState = {
     isLoggedIn: false, //once the user is logged in, isLoggedIn = true;
     thoughts: [], //needs to get the list of thoughts from the database,
     currentUser: null,
+    basicAuth: null,
     error: null,
     //what other things in state do I need?
-    //do I need seperate actions/reducers/store for thoughts and users?
 };
 
 var thoughtReducer = function(state = initialState, action) { //ES6 babyyyyy
     //state = state || initialState;
     switch(action.type) {
         case actions.FETCH_THOUGHTS_SUCCESS:
-            console.log(action.payload);
             return Object.assign({}, state, {
                 thoughts: action.payload
             });
@@ -25,17 +24,34 @@ var thoughtReducer = function(state = initialState, action) { //ES6 babyyyyy
                 error: action.error
             });
             
+        case actions.ADD_THOUGHT_SUCCESS:
+            var newThoughts = state.thoughts.concat(action.payload);
+            return Object.assign({}, state, {
+                thoughts: newThoughts
+            });
+            
+        case actions.ADD_THOUGHT_ERROR:
+            return Object.assign({}, state, {
+                error: action.error
+            });
+            
         case actions.CREATE_SESSION_SUCCESS:
-            // return state object with currentUser: action.payload
-            return;
+            // return state object with currentUser: action.payload.username, basicAuth: action.payload.basicAuth
+            return Object.assign({}, state, {
+                currentUser: action.payload
+            });
         
-        case actions.CREATE_SESSION_FAIL:
-            // return state object with error: action.payload
-            return;
+        case actions.CREATE_SESSION_ERROR:
+            // return state object with error: action.error
+            return Object.assign({}, state, {
+                error: action.error
+            });
 
         case actions.DESTROY_SESSION:
             // return state object currentUser: null
-            return;
+            return Object.assign({}, state, {
+                currentUser: null
+            });
             
         default:
             return state;
