@@ -21,16 +21,27 @@ var Thought = React.createClass({
     },
     
     render: function(){
-        return (<div><Link to="/logIn">
-                          Log In
-                        </Link> &nbsp; 
-                        <Link to="/register">
-                            Register
-                        </Link><h1>Thought of the Day</h1><br />
-                        <RandomThought random={this.randomThought()} />
-                        <Link to="/addThought">
-                            Wanna add a new thought??
-                        </Link> <input type = 'button' value="Change the Thought" /></div>);
+        return (
+            <div>
+                <nav>
+                    <Link to="/logIn">
+                      Log In
+                    </Link> &nbsp; 
+                    <Link to="/register">
+                        Register
+                    </Link>
+                    <Error error={this.props.error} />
+                </nav>
+                
+                <main>
+                    <h1>Thought of the Day</h1><br />
+                    <RandomThought random={this.randomThought()} />
+                    <Link to="/addThought">
+                        Wanna add a new thought??
+                    </Link> <input type = 'button' value="Change the Thought" />
+                </main>
+            </div>
+        );
     
    
     }
@@ -38,7 +49,8 @@ var Thought = React.createClass({
  //
 
 // let mapStateToProps= function(state, props){
-//     thought: state.thought
+//     thought: state.thought,
+//      error: state.error
     
 // }
 

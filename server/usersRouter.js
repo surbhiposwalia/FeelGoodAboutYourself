@@ -13,6 +13,23 @@ usersRouter.get('/', function(req, res) {
     });
 });
 
+usersRouter.post('/login', (req, res) => {
+    // req.body === { username, password }
+    User.findOne({ username: username })
+        .then(user => {
+            if (!user) return res.sendStatus(401);
+            
+            user.validatePassword(req.body.password, (err, isValid) => {
+                if (err) return res.sendStatus(500);
+                
+                if (!isValid) res.sendStatus(401);
+                
+                return res.status(200).json({ username: username });
+            })
+        })
+    
+})
+
 usersRouter.post('/', jsonParser, function(req, res) {
     let username = req.body.username;
     let password = req.body.password;
