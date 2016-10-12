@@ -13,8 +13,8 @@ thoughtsRouter.get('/', function(req, res){
     });
 });
 
-thoughtsRouter.get('/:thoughtId', function(req, res){
-    Thought.findOne(req.params.thoughtId, function(err, thoughts) {
+thoughtsRouter.get('/:from', function(req, res){
+    Thought.findOne(req.params.from, function(err, thoughts) {
        if(err) return errorHandler(res);
         return res.json(thoughts);
     });
@@ -81,10 +81,10 @@ thoughtsRouter.post('/', function(req, res){
     });
 });
 
-thoughtsRouter.put('/:thoughtId', function(req, res){
+thoughtsRouter.put('/:from ', function(req, res){
     
     let thought= req.body.thought;
-    let from = req.body.from;
+    let from = req.params.from;
     
      if(!req.body){
         return res.status(404).json({
@@ -132,7 +132,7 @@ thoughtsRouter.put('/:thoughtId', function(req, res){
         });
     }
     
-    Thought.findByIdAndUpdate(req.params.thoughtId,{ 
+    Thought.findOneAndUpdate(from,{ 
         thought: thought,
         from: from
         }, function(err, thoughts) {
