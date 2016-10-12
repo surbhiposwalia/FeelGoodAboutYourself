@@ -3,15 +3,17 @@ import ReactDOM from 'react-dom';
 
 var AddThought = React.createClass({
     addThought: function(){
-        const newThought= this.props.refs.newThought.value;
-        console.log(newThought);
+        event.preventDefault();
+        const thought= this.refs.newThought.value;
+        console.log(thought);
+        this.refs.newThought.value='';
     },
-    
-    render: function(props){
-    return  <div><form onSubmit={this.addthought}>
-            <input type="text-area" placeholder="Enter your Thought" ref='newThought' /> &nbsp;
+    render: function(){
+    return  <div><h1>Add a New Thought</h1><form onSubmit={this.addThought}>
+            <input type="text" placeholder="Enter your Thought" ref="newThought" /> &nbsp;
             <input type="submit" value="Add" />
-            </form></div>
+            </form>
+            </div>
 }
 });
 
