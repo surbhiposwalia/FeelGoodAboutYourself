@@ -1,17 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-var router =require ('react-router');
-var Router = router.Router;
-var Route = router.Route;
-var hashHistory = router.hashHistory;
-var Link= router.Link;
-var IndexRoute= router.IndexRoute;
+import router from 'react-router';
+import {Router} from 'react-router';
+import {Route} from 'react-router';
+import {hashHistory} from 'react-router';
+import {Link} from 'react-router';
+import {IndexRoute} from 'react-router';
 import RandomThought from './RandomThought';
 import LogIn from './LogIn';
 import Register from './Register';
 import AddThought from './addThought';
 import routes from './routes';
-
+import actions from '../redux/actions';
+import {connect} from 'react-redux';
   
 var Thought = React.createClass({
     randomThought: function(){
