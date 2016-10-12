@@ -190,3 +190,9 @@ usersRouter.put('/:userId', jsonParser, function(req, res) {
 });
 
 module.exports = usersRouter;
+
+function  errorHandler(res){
+   return res.status(500).json({
+        message: 'Internal Server Error'
+    });
+}

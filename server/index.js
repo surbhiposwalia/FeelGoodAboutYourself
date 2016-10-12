@@ -68,10 +68,5 @@ if (require.main === module) {
     runServer();
 }
 
-function  errorHandler(res){
-   return res.status(500).json({
-        message: 'Internal Server Error'
-    });
-}
 
-exports.errorHandler = errorHandler;
+

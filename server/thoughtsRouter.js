@@ -1,7 +1,7 @@
 var express = require('express');
 var jsonParser = require('body-parser').json();
 var Thought = require('./models/thought');
-var errorHandler = require('./index').errorHandler;
+
 
 var thoughtsRouter = express.Router();
 thoughtsRouter.use(jsonParser);
@@ -148,4 +148,12 @@ thoughtsRouter.delete('/:thoughtId', function(req, res){
     });
 });
 
+
+function  errorHandler(res){
+   return res.status(500).json({
+        message: 'Internal Server Error'
+    });
+}
+
 module.exports = thoughtsRouter;
+

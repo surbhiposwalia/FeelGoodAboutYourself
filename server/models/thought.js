@@ -7,7 +7,7 @@ var ThoughtSchema = new mongoose.Schema({
     },
     //this is the user who wrote the thought
     from: {
-        type: mongoose.Schema.Types.ObjectId,
+        type:String,
         ref: 'User',
         required: true
     }

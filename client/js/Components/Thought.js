@@ -17,9 +17,9 @@ import Error from './Error';
   
 var Thought = React.createClass({
     randomThought: function(){
-        console.log('in randomthought');
-     //return   props.thought[Math.floor(Math.random()*props.thought.length+1)];
-     return "thought";
+    const random=Math.floor(Math.random()*this.props.thought.length);
+     return   this.props.thoughts[random];
+    
     },
     
     render: function(){
@@ -37,10 +37,9 @@ var Thought = React.createClass({
                 
                 <main>
                     <h1>Thought of the Day</h1><br />
-                    <RandomThought random={this.randomThought()} />
                     <Link to="/addThought">
                         Wanna add a new thought??
-                    </Link> <input type = 'button' value="Change the Thought" />
+                    </Link> <input type = 'button' value="Change the Thought" onClick={this.randomThought} />
                 </main>
         </div>
         );
@@ -48,17 +47,23 @@ var Thought = React.createClass({
    
     }
 })
- //
+ 
 
-// let mapStateToProps= function(state, props){
-//     thought: state.thought,
-//      error: state.error
-    
-// }
+let mapStateToProps= function(state, props){
+    return{
+    isLoggedIn: state.isLoggedIn, 
+    thoughts: state.thoughts, 
+    currentUser: state.currentUser,
+    basicAuth: state.basicAuth,
+    error: state.error
+    }
+}
 
-// const Container = (mapStateToProps)(Thought)
+const Container = (mapStateToProps)(Thought)
 
 
 
 export default Thought;// should be container when adding redux
+
+//if isLoggedIn == true then , on home page add link to logout;
 
