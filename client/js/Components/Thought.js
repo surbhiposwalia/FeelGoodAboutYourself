@@ -18,35 +18,35 @@ import Error from './Error';
 var Thought = React.createClass({
     randomThought: function(){
         const random=Math.floor(Math.random()*this.props.thoughts.length);
-        this.props.dispatch(actions.selectThought(this.props.thoughts[random].thought));
+        this.props.dispatch(actions.selectThought(this.props.thoughts[random]));
     },
     
     render: function(){
         return (
             <div>
                 <nav>
+                    <Error error={this.props.error} />
                     <Link to="/logIn">
-                      Log In
-                    </Link> &nbsp; 
+                        Log In
+                    </Link>
+                    &nbsp; 
                     <Link to="/register">
                         Register
                     </Link>
-                    <Error error={this.props.error} />
                 </nav>
                 
                 <main>
-                    <h1>Thought: {this.props.currentThought}</h1><br />
+                    <h1>Thought: "{this.props.currentThought.thought}"</h1>
+                    <p>- {this.props.currentThought.from}</p>
                     <Link to="/addThought">
                         Want to add a thought?
-                    </Link> <input type = 'button' value="Change the Thought" onClick={this.randomThought} />
+                    </Link>
+                    <input type = 'button' value="Change the Thought" onClick={this.randomThought} />
                 </main>
-        </div>
+            </div>
         );
-    
-   
     }
-})
- 
+});
 
 let mapStateToProps= function(state, props){
     return{
@@ -61,9 +61,4 @@ let mapStateToProps= function(state, props){
 
 export default connect(mapStateToProps)(Thought);
 
-// const Container = (mapStateToProps)(Thought);
-
-// export default Container;// should be container when adding redux
-
 //if isLoggedIn == true then , on home page add link to logout;
-

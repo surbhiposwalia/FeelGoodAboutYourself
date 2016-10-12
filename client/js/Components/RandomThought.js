@@ -1,11 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+//DO WE EVEN NEED THIS FILE?
 
-var RandomThought = React.createClass({
-    render: function(props){
-       console.log(this.props);
-        return (<div>"{this.props.random}"</div>); 
-    }
-})
+// import React from 'react';
 
-export default RandomThought;
+// var RandomThought = React.createClass({
+//     render: function(props){
+//       console.log(this.props);
+//         return (<div>"{this.props.random}"</div>); 
+//     }
+// })
+
+// export default RandomThought;

@@ -9,7 +9,6 @@ var initialState = {
     basicAuth: null,
     error: null,
     currentThought: "",
-    //what other things in state do I need?
 };
 
 var thoughtReducer = function(state = initialState, action) { //ES6 babyyyyy

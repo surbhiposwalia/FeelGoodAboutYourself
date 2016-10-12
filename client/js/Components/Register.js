@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+
 var Register= React.createClass({
     addUser: function(){
         event.preventDefault();
@@ -15,17 +15,17 @@ var Register= React.createClass({
     },
     
     render:function(){
-    return <div><h1>Register</h1><br />
-            Username:<input type='text' ref='username' placeholder="Enter your username" />
-            Password:<input type='text' ref='password' placeholder="Enter your password" />
-            Confirm Password:<input type='text' ref='confirmPassword' placeholder="Confirm your password" />
-            <input type='submit' value='Register' onClick={this.addUser} /></div>
-}
+        return(
+            <div>
+                <h1>Register</h1>
+                <br />
+                Username:<input type='text' ref='username' placeholder="Enter your username" />
+                Password:<input type='text' ref='password' placeholder="Enter your password" />
+                Confirm Password:<input type='text' ref='confirmPassword' placeholder="Confirm your password" />
+                <input type='submit' value='Register' onClick={this.addUser} />
+            </div>
+        );
+    }
 });
-
-
-
-
-
 
 export default Register;
