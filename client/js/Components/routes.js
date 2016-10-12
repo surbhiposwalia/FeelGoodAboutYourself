@@ -16,6 +16,6 @@ var routes = (
             <Route path="/register" component= {Register} />
             <Route path="/addThought" component= {AddThought} />
    </Router>
-    )
+    );
     
     export default routes;
