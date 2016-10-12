@@ -29,7 +29,19 @@ var LogIn= React.createClass({
     }
 });
 
-const Container= connect()(LogIn);
+let mapStateToProps= function(state, props){
+    return{
+        isLoggedIn: state.isLoggedIn, 
+        thoughts: state.thoughts, 
+        currentUser: state.currentUser,
+        basicAuth: state.basicAuth,
+        error: state.error,
+        currentThought: state.currentThought,
+    };
+};
+
+const Container = connect(mapStateToProps)(LogIn);
+
 export default Container;
 
 

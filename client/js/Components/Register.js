@@ -1,4 +1,6 @@
 import React from 'react';
+import Error from './Error';
+import {connect} from 'react-redux';
 
 var Register= React.createClass({
     addUser: function(){
@@ -6,9 +8,9 @@ var Register= React.createClass({
         var username= this.refs.username.value;
         var password= this.refs.password.value;
         var confirmPassword= this.refs.confirmPassword.value;
-        if(password !== confirmPassword){
-            alert('password and confirm password is not same!!');
-        }
+        // if(password !== confirmPassword){
+        //     alert('password and confirm password is not same!!');
+        // }
         this.refs.username.value='';
         this.refs.password.value='';
         this.refs.confirmPassword.value='';
@@ -19,6 +21,7 @@ var Register= React.createClass({
             <div>
                 <h1>Register</h1>
                 <br />
+                <Error error={this.props.error} />
                 Username:<input type='text' ref='username' placeholder="Enter your username" />
                 Password:<input type='text' ref='password' placeholder="Enter your password" />
                 Confirm Password:<input type='text' ref='confirmPassword' placeholder="Confirm your password" />
@@ -28,4 +31,15 @@ var Register= React.createClass({
     }
 });
 
-export default Register;
+let mapStateToProps= function(state, props){
+    return {
+        isLoggedIn: state.isLoggedIn, 
+        thoughts: state.thoughts, 
+        currentUser: state.currentUser,
+        basicAuth: state.basicAuth,
+        error: state.error,
+        currentThought: state.currentThought,
+    };
+};
+
+export default connect(mapStateToProps)(Register);
