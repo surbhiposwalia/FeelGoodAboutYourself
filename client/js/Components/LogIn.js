@@ -11,6 +11,7 @@ var LogIn= React.createClass({
         this.refs.password.value='';
     },
     render: function(){
+       
         return (<div><h1>Log IN</h1><br />
             Username:<input type='text' ref='username' placeholder="Enter your username" />
             Password:<input type='text' ref='password' placeholder="Enter your password" />
