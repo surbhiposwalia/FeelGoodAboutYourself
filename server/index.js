@@ -5,12 +5,11 @@ import bodyParser from 'body-parser';
 import User from './models/user';
 // import jsonParser from 'bodyParser';
 var jsonParser = bodyParser.json();
-import Thought from './models/thought';
 import bcrypt from 'bcryptjs';
 mongoose.Promise= global.Promise;
 
 import usersRouter from './usersRouter';
-import thoughtsRouter from './thoughtsRouter'
+import thoughtsRouter from './thoughtsRouter';
 
 
 const HOST = process.env.HOST;
