@@ -13,6 +13,7 @@ import AddThought from './addThought';
 import routes from './routes';
 import actions from '../redux/actions';
 import {connect} from 'react-redux';
+import Error from './Error';
   
 var Thought = React.createClass({
     randomThought: function(){
@@ -41,7 +42,7 @@ var Thought = React.createClass({
                         Wanna add a new thought??
                     </Link> <input type = 'button' value="Change the Thought" />
                 </main>
-            </div>
+        </div>
         );
     
    
@@ -60,3 +61,4 @@ var Thought = React.createClass({
 
 
 export default Thought;// should be container when adding redux
+

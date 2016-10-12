@@ -6,6 +6,7 @@ var LogIn= React.createClass({
         event.preventDefault();
         var username= this.refs.username.value;
         var password= this.refs.password.value;
+        
         console.log(username, password);
         this.refs.username.value='';
         this.refs.password.value='';
