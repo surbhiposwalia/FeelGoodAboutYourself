@@ -40,7 +40,6 @@ function fetchThoughts() {
                 return res.json();
             })
             .then(function(data) {
-                console.log("THIS IS THE DISPATCHED DATA: " + data);
                 dispatch(fetchThoughtsSuccess(data));
             })
         .catch(function(error) {

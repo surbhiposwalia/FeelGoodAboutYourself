@@ -19,6 +19,7 @@ var Register= React.createClass({
         this.refs.username.value='';
         this.refs.password.value='';
         this.refs.confirmPassword.value='';
+        this.context.router.push('/');
     },
     
     render:function(){
@@ -35,6 +36,10 @@ var Register= React.createClass({
         );
     }
 });
+
+Register.contextTypes = {
+    router: React.PropTypes.object.isRequired
+};
 
 let mapStateToProps= function(state, props){
     return {

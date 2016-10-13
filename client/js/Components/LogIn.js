@@ -22,9 +22,9 @@ var LogIn= React.createClass({
         // console.log(username, password);
         this.refs.username.value = '';
         this.refs.password.value = '';
-        
-        this.context.router.push('/');
-
+        if(this.props.isLoggedIn){
+            this.context.router.push('/');
+        }
     },
     
     
@@ -64,5 +64,3 @@ LogIn.contextTypes = {
 const Container = connect(mapStateToProps)(LogIn);
 
 export default Container;
-
-

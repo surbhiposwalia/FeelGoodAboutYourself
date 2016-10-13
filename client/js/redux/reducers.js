@@ -5,18 +5,17 @@ var actions = require('./actions');
 var initialState = {
     isLoggedIn: false, //once the user is logged in, isLoggedIn = true;
     thoughts: [], //needs to get the list of thoughts from the database,
-    currentUser: null,
-    basicAuth: null,
-    error: null,
+    currentUser: "",
+    basicAuth: "",
+    error: "",
     currentThought: "",
-    feedback:null
+    feedback:""
 };
 
 var thoughtReducer = function(state = initialState, action) { //ES6 babyyyyy
     //state = state || initialState;
     switch(action.type) {
         case actions.FETCH_THOUGHTS_SUCCESS:
-            console.log(action.payload)
             return Object.assign({}, state, {
                 thoughts: action.payload
             });
@@ -57,7 +56,7 @@ var thoughtReducer = function(state = initialState, action) { //ES6 babyyyyy
             return Object.assign({}, state, {
                 currentUser: action.payload,
                 isLoggedIn:true,
-                feedback:'You are successfully logged In'
+                feedback:'You are successfully logged In!, Welcome!'+ action.payload
             });
         
         case actions.CREATE_SESSION_ERROR:
@@ -76,7 +75,7 @@ var thoughtReducer = function(state = initialState, action) { //ES6 babyyyyy
             });
             
         case actions.SELECT_THOUGHT:
-            console.log(action.payload);
+            //console.log(action.payload);
             return Object.assign({}, state, {
                 currentThought: action.payload
             });
