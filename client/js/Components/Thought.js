@@ -31,6 +31,9 @@ var Thought = React.createClass({
             <div>
                 <nav>
                     <Error error={this.props.error} />
+                    <Link to="/">
+                        Home
+                    </Link>
                     <Link to="/logIn">
                         Log In
                     </Link>
