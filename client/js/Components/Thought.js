@@ -15,9 +15,15 @@ import {connect} from 'react-redux';
 import Error from './Error';
   
 var Thought = React.createClass({
+    componentWillMount:function(){
+        this.props.dispatch(actions.fetchThoughts());
+    },
     randomThought: function(){
         const random=Math.floor(Math.random()*this.props.thoughts.length);
         this.props.dispatch(actions.selectThought(this.props.thoughts[random]));
+    },
+    logOut:function(){
+        
     },
     
     render: function(){
@@ -61,3 +67,5 @@ let mapStateToProps= function(state, props){
 export default connect(mapStateToProps)(Thought);
 
 //if isLoggedIn == true then , on home page add link to logout;
+//should render thought on page loads
+//should refresh feedback when changing pages

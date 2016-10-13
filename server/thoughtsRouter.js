@@ -1,6 +1,7 @@
 var express = require('express');
 var jsonParser = require('body-parser').json();
 var Thought = require('./models/thought');
+var User = require('./models/user');
 
 
 var thoughtsRouter = express.Router();
@@ -69,16 +70,22 @@ thoughtsRouter.post('/', function(req, res){
             message:"Incorrect field length"
         });
     }
-    
-    var newThought = new Thought({
+    User.findOne({username:from}, function(err,user){
+        if(err) return errorHandler(err)
+            console.log(user);
+            var newThought = new Thought({
                 thought: thought,
-                from: from
-    });
-            
-    newThought.save(function(err, thought) {
-        if(err) return errorHandler(res);
-        return res.status(201).json({});
-    });
+                from: user._id
+            })
+        newThought.save(function(err, thought) {
+            if(err) return errorHandler(res);
+            return res.status(201).json({});
+        });
+    })
+    
+   
+       
+    
 });
 
 thoughtsRouter.put('/:from ', function(req, res){

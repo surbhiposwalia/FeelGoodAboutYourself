@@ -8,9 +8,8 @@ var thoughtReducer = require('./reducers').thoughtReducer;
 var actions = require('./actions');
 
 var store = createStore(thoughtReducer, applyMiddleware(thunk));
-
-store.dispatch(actions.fetchThoughts()); //test
-store.dispatch(actions.createSessionAsync("user6530", "password"));
+// store.dispatch(actions.fetchThoughts());
+store.dispatch(actions.addThoughtAsync('dyyy---','user8191'));
 
 
 module.exports = store;

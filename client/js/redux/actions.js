@@ -86,11 +86,11 @@ var addThoughtAsync = function(thought, currentUser){
                     error.res = res;
                     throw error;
                 }
-                res = res.json();
+                return res.json();
             })
             .then(response => {
                 //if success, dispatch addThoughtSuccess(response);
-                console.log(response.status);
+                console.log(response);
                 dispatch(addThoughtSuccess(response.data));
             })
         .catch(err => {
@@ -118,7 +118,56 @@ var createSessionError = function(error) {
         error: error
     };
 };
+var registerUserAsync = function(username, password) {
+    return function(dispatch) {
+        var endpoint = '/users';
+        fetch(endpoint, {
+            method:'post',
+            //var headers = new headers
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+        },
+                body:JSON.stringify({
+                username: username,
+                password: password
+        })})
+            .then(function(res) {
+                if(res.status < 200 || res.status >= 300) {
+                    //bad response :(
+                    var error = new Error(res.statusText);
+                    error.res = res;
+                    throw error;
+                }
+                res = res.json();
+            })
+            .then(response => {
+                //if success, dispatch addThoughtSuccess(response);
+                return dispatch(registerUserSuccess());
+            })
+            
+        .catch(err => {
+            //if fail, dispatch addThoughtFail(error);
+            console.log(err);
+            return dispatch(registerUserError(err));
+        });
+    };
+};
 
+var REGISTER_USER_SUCCESS= 'REGISTER_USER_SUCCESS';
+var registerUserSuccess= function(){
+    return{
+        type:REGISTER_USER_SUCCESS
+    }
+}
+
+var REGISTER_USER_ERROR= 'REGISTER_USER_ERROR';
+var registerUserError= function(err){
+    return{
+        type:REGISTER_USER_ERROR,
+        error:err
+    }
+}
 //createSessionAsync (log in user)
 var createSessionAsync = function(username, password) {
     return function(dispatch) {
@@ -178,6 +227,13 @@ var destroySession = function() {
         
 //     }
 // }
+exports.REGISTER_USER_ERROR = REGISTER_USER_ERROR;
+exports.registerUserError=registerUserError;
+
+exports.REGISTER_USER_SUCCESS = REGISTER_USER_SUCCESS;
+exports.registerUserSuccess=registerUserSuccess;
+
+exports.registerUserAsync=registerUserAsync;
 
 exports.FETCH_THOUGHTS_SUCCESS = FETCH_THOUGHTS_SUCCESS;
 exports.fetchThoughtsSuccess = fetchThoughtsSuccess;

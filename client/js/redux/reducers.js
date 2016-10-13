@@ -9,12 +9,14 @@ var initialState = {
     basicAuth: null,
     error: null,
     currentThought: "",
+    feedback:null
 };
 
 var thoughtReducer = function(state = initialState, action) { //ES6 babyyyyy
     //state = state || initialState;
     switch(action.type) {
         case actions.FETCH_THOUGHTS_SUCCESS:
+            console.log(action.payload)
             return Object.assign({}, state, {
                 thoughts: action.payload
             });
@@ -27,26 +29,43 @@ var thoughtReducer = function(state = initialState, action) { //ES6 babyyyyy
         case actions.ADD_THOUGHT_SUCCESS:
             var newThoughts = state.thoughts.concat(action.payload);
             return Object.assign({}, state, {
-                thoughts: newThoughts
+                thoughts: newThoughts,
+                feedback:"The thought is successfully added!"
             });
             
         case actions.ADD_THOUGHT_ERROR:
             return Object.assign({}, state, {
-                error: action.error
+                error: action.error,
+                feedback: 'Sorry! we could\'nt process your request' 
+            });
+            
+        case actions.REGISTER_USER_ERROR:
+            return Object.assign({}, state, {
+                error: action.error,
+                feedback: 'Sorry! we could\'nt process your request' 
+            });
+        
+        case actions.REGISTER_USER_SUCCESS:
+            return Object.assign({}, state, {
+                feedback:"You are successfully registered!"
             });
             
         case actions.CREATE_SESSION_SUCCESS:
             // return state object with currentUser: action.payload.username, basicAuth: action.payload.basicAuth
-           console.log(state);
+           console.log(action.payload);
+           
             return Object.assign({}, state, {
                 currentUser: action.payload,
-                isLoggedIn:true
+                isLoggedIn:true,
+                feedback:'You are successfully logged In'
             });
         
         case actions.CREATE_SESSION_ERROR:
+            
             // return state object with error: action.error
             return Object.assign({}, state, {
-                error: action.error
+                error: action.error,
+                feedback: 'Sorry! you are not authorized. Please register to logIn!!' 
             });
 
         case actions.DESTROY_SESSION:
@@ -57,6 +76,7 @@ var thoughtReducer = function(state = initialState, action) { //ES6 babyyyyy
             });
             
         case actions.SELECT_THOUGHT:
+            console.log(action.payload);
             return Object.assign({}, state, {
                 currentThought: action.payload
             });
