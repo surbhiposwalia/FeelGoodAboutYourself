@@ -8,6 +8,36 @@ function selectThought(thought) {
     };
 }
 
+var CHANGE_FEEDBACK= 'CHANGE_FEEDBACK';
+var changeFeedback= function(feedback){
+    return {
+        type:CHANGE_FEEDBACK,
+        payload:feedback
+    }
+}
+
+function fetchThoughts() {
+    return function(dispatch) {
+        var endpoint = '/thoughts';
+        return fetch(endpoint)
+            .then(function(res) {
+                if(res.status < 200 || res.status >= 300) {
+                    //bad response :(
+                    var error = new Error(res.statusText);
+                    error.res = res;
+                    throw error;
+                }
+                return res.json();
+            })
+            .then(function(data) {
+                dispatch(fetchThoughtsSuccess(data));
+            })
+        .catch(function(error) {
+            dispatch(fetchThoughtsError(error));
+        });
+    };
+}
+
 //actions to fetch thoughts (sync)
 var FETCH_THOUGHTS_SUCCESS = 'FETCH_THOUGHTS_SUCCESS';
 function fetchThoughtsSuccess(thoughts) {
@@ -226,6 +256,9 @@ var destroySession = function() {
         
 //     }
 // }
+exports.CHANGE_FEEDBACK=CHANGE_FEEDBACK;
+exports.changeFeedback=changeFeedback;
+
 exports.REGISTER_USER_ERROR = REGISTER_USER_ERROR;
 exports.registerUserError=registerUserError;
 

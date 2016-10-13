@@ -25,6 +25,7 @@ var AddThought = React.createClass({
                 <Link to="/">
                     Home
                 </Link>
+                
             </div>  
         );
     }

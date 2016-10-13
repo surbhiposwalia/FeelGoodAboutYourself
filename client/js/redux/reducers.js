@@ -56,7 +56,7 @@ var thoughtReducer = function(state = initialState, action) { //ES6 babyyyyy
             return Object.assign({}, state, {
                 currentUser: action.payload,
                 isLoggedIn:true,
-                feedback:'You are successfully logged In!, Welcome!'+ action.payload
+                feedback:'You are successfully logged In!, Welcome '+action.payload
             });
         
         case actions.CREATE_SESSION_ERROR:
@@ -79,6 +79,11 @@ var thoughtReducer = function(state = initialState, action) { //ES6 babyyyyy
             return Object.assign({}, state, {
                 currentThought: action.payload
             });
+            
+        case actions.CHANGE_FEEDBACK:
+            return Object.assign({},state,{
+                feedback:action.payload
+            })
             
         default:
             return state;

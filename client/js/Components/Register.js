@@ -19,7 +19,7 @@ var Register= React.createClass({
         this.refs.username.value='';
         this.refs.password.value='';
         this.refs.confirmPassword.value='';
-        this.context.router.push('/');
+       // this.context.router.push('/');
     },
     
     render:function(){

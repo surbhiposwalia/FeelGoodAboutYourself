@@ -22,9 +22,10 @@ var LogIn= React.createClass({
         // console.log(username, password);
         this.refs.username.value = '';
         this.refs.password.value = '';
-        if(this.props.isLoggedIn){
+        setTimeout(function(){if(this.props.isLoggedIn){
             this.context.router.push('/');
-        }
+        }},3000);
+        
     },
     
     

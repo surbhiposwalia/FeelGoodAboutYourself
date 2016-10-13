@@ -24,36 +24,65 @@ var Thought = React.createClass({
         this.props.dispatch(actions.selectThought(this.props.thoughts[random]));
     },
     logOut:function(){
-        
+        this.props.dispatch(actions.destroySession());
     },
     
     render: function(){
-        return (
-            <div>
-                <nav>
-                    <Error error={this.props.feedback} />
-                    <Link to="/">
-                        Home
-                    </Link>
-                    <Link to="/logIn">
-                        Log In
-                    </Link>
-                    &nbsp; 
-                    <Link to="/register">
-                        Register
-                    </Link>
-                </nav>
-                
-                <main>
-                    <h1>Thought: "{this.props.currentThought.thought}"</h1>
-                    <p>- {this.props.currentThought.from}</p>
-                    <Link to="/addThought">
-                        Want to add a thought?
-                    </Link>
-                    <input type = 'button' value="Change the Thought" onClick={this.randomThought} />
-                </main>
-            </div>
-        );
+        if(!this.props.isLoggedIn){
+            return (
+                <div>
+                    <nav>
+                        <Error error={this.props.feedback} />
+                        <Link to="/">
+                            Home
+                        </Link>
+                        &nbsp; 
+                        <Link to="/logIn">
+                            Log In
+                        </Link>
+                        &nbsp; 
+                        <Link to="/register">
+                            Register
+                        </Link>
+                    </nav>
+                    
+                    <main>
+                        <h1>Thought: "{this.props.currentThought.thought}"</h1>
+                        <p>- {this.props.currentThought.from}</p>
+                        <Link to="/logIn">
+                            Want to add a thought?
+                        </Link>
+                        <input type = 'button' value="Change the Thought" onClick={this.randomThought} />
+                    </main>
+                </div>
+            );
+        }
+        else{
+            return (
+                <div>
+                    <nav>
+                        <Error error={this.props.feedback} />
+                        <Link to="/">
+                            Home
+                        </Link>
+                        &nbsp; 
+                        <Link to="/" onClick={this.logOut}>
+                            Log Out   
+                        </Link>
+                        
+                    </nav>
+                    
+                    <main>
+                        <h1>Thought: "{this.props.currentThought.thought}"</h1>
+                        <p>- {this.props.currentThought.from}</p>
+                        <Link to="/addThought">
+                            Want to add a thought?
+                        </Link>
+                        <input type = 'button' value="Change the Thought" onClick={this.randomThought} />
+                    </main>
+                </div>
+            );
+        }
     }
 });
 
