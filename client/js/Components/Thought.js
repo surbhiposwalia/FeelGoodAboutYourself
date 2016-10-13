@@ -17,9 +17,10 @@ import Error from './Error';
 var Thought = React.createClass({
     componentWillMount:function(){
         this.props.dispatch(actions.fetchThoughts());
+        //this.randomThought();
     },
     randomThought: function(){
-        const random=Math.floor(Math.random()*this.props.thoughts.length);
+        const random = Math.floor(Math.random()*this.props.thoughts.length);
         this.props.dispatch(actions.selectThought(this.props.thoughts[random]));
     },
     logOut:function(){
@@ -30,7 +31,7 @@ var Thought = React.createClass({
         return (
             <div>
                 <nav>
-                    <Error error={this.props.error} />
+                    <Error error={this.props.feedback} />
                     <Link to="/">
                         Home
                     </Link>
@@ -64,6 +65,7 @@ let mapStateToProps= function(state, props){
         basicAuth: state.basicAuth,
         error: state.error,
         currentThought: state.currentThought,
+        feedback:state.feedback
     };
 };
 
