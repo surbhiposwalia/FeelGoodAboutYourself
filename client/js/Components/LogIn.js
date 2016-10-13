@@ -22,10 +22,6 @@ var LogIn= React.createClass({
         // console.log(username, password);
         this.refs.username.value = '';
         this.refs.password.value = '';
-<<<<<<< HEAD
-
-=======
->>>>>>> 9bad3bdd389e59f563ead3c024cc79716248ff63
         if(this.props.isLoggedIn){
             this.context.router.push('/');
         }
