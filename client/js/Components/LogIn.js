@@ -4,13 +4,17 @@ import actions from '../redux/actions';
 import routes from './routes';
 import { browserHistory } from 'react-router'
 import {Link} from 'react-router';
+import Thought from './Thought';
+var router = require('react-router');
+var Router = router.Router;
+var Route = router.Route;
+var hashHistory = router.hashHistory;
 
 var connect = require('react-redux').connect;
 import Error from './Error';
 
 var LogIn= React.createClass({
     addUser: function(event){
-        console.log('in add Userr');
         event.preventDefault();
         var username = this.refs.username.value;
         var password = this.refs.password.value;
@@ -18,12 +22,12 @@ var LogIn= React.createClass({
         // console.log(username, password);
         this.refs.username.value = '';
         this.refs.password.value = '';
-       
-                        
-                    
-       // browserHistory.push('/');
-        
+        if(this.props.isLoggedIn){
+            this.context.router.push('/');
+        }
     },
+    
+    
     render: function(){
         return (
             <div>
@@ -32,7 +36,9 @@ var LogIn= React.createClass({
                 <Error error={this.props.feedback} />
                 Username:<input type='text' ref='username' placeholder="Enter your username" />
                 Password:<input type='text' ref='password' placeholder="Enter your password" />
-                <input type='submit' value='LogIn' onClick={this.addUser} /><Link to="/">Home</Link>
+                <input type='submit' value='LogIn' onClick={this.addUser} />
+                <br />
+                <Link to="/">Home</Link>
                 
             </div>
         );
@@ -51,8 +57,10 @@ let mapStateToProps= function(state, props){
     };
 };
 
+LogIn.contextTypes = {
+    router: React.PropTypes.object.isRequired
+};
+
 const Container = connect(mapStateToProps)(LogIn);
 
 export default Container;
-
-
