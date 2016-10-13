@@ -9,7 +9,8 @@ var initialState = {
     basicAuth: "",
     error: "",
     currentThought: "",
-    feedback:""
+    feedback:"",
+    userThoughts: []
 };
 
 var thoughtReducer = function(state = initialState, action) { //ES6 babyyyyy
@@ -83,7 +84,17 @@ var thoughtReducer = function(state = initialState, action) { //ES6 babyyyyy
         case actions.CHANGE_FEEDBACK:
             return Object.assign({},state,{
                 feedback:action.payload
-            })
+            });
+            
+        case actions.FETCH_THOUGHTS_SUCCESS_FROM_USER:
+            return Object.assign({}, state, {
+                userThoughts: action.payload
+            });
+            
+        case actions.FETCH_THOUGHTS_ERROR_FROM_USER:
+            return Object.assign({}, state, {
+                error: action.error
+            });
             
         default:
             return state;

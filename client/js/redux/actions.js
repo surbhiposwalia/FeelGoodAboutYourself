@@ -78,6 +78,55 @@ function fetchThoughts() {
     };
 }
 
+
+
+
+
+//actions to fetch thoughts (sync)
+var FETCH_THOUGHTS_SUCCESS_FROM_USER = 'FETCH_THOUGHTS_SUCCESS_FROM_USER';
+function fetchThoughtsSuccessFromUser(thoughts) {
+    return {
+        type: FETCH_THOUGHTS_SUCCESS_FROM_USER,
+        payload: thoughts
+    };
+}
+
+var FETCH_THOUGHTS_ERROR_FROM_USER = 'FETCH_THOUGHTS_ERROR_FROM_USER';
+function fetchThoughtsErrorFromUser(error) {
+    return {
+        type: FETCH_THOUGHTS_ERROR_FROM_USER,
+        error: error
+    };
+}
+
+//action to fetch thought endpoint for API (async)
+function fetchThoughtsFromUser(currUser) {
+    return function(dispatch) {
+        var endpoint = '/thoughts/' + currUser;
+        return fetch(endpoint)
+            .then(function(res) {
+                if(res.status < 200 || res.status >= 300) {
+                    //bad response :(
+                    var error = new Error(res.statusText);
+                    error.res = res;
+                    throw error;
+                }
+                return res.json();
+            })
+            .then(function(data) {
+                console.log(data);
+                dispatch(fetchThoughtsSuccessFromUser(data));
+            })
+        .catch(function(error) {
+            dispatch(fetchThoughtsErrorFromUser(error));
+        });
+    };
+}
+
+
+
+
+
 var ADD_THOUGHT_SUCCESS = 'ADD_THOUGHT_SUCCESS';
 var addThoughtSuccess = function(thought){
     return {
@@ -297,7 +346,10 @@ exports.destroySession = destroySession;
 exports.SELECT_THOUGHT = SELECT_THOUGHT;
 exports.selectThought = selectThought;
 
-// exports.DESTROY_SESSION_ERROR = DESTROY_SESSION_ERROR;
-// exports.destroySessionError = destroySessionError;
+exports.FETCH_THOUGHTS_SUCCESS_FROM_USER = FETCH_THOUGHTS_SUCCESS_FROM_USER;
+exports.fetchThoughtsSuccessFromUser = fetchThoughtsSuccessFromUser;
 
-// exports.destroySessionAsync = destroySessionAsync;
+exports.FETCH_THOUGHTS_ERROR_FROM_USER = FETCH_THOUGHTS_ERROR_FROM_USER;
+exports.fetchThoughtsErrorFromUser = fetchThoughtsErrorFromUser;
+
+exports.fetchThoughtsFromUser = fetchThoughtsFromUser;

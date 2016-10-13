@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import actions from '../redux/actions';
 import {Link} from 'react-router';
 import Error from './Error';
+import ThoughtList from './ThoughtList';
 
 var AddThought = React.createClass({
     addThought: function(event){
@@ -13,6 +14,7 @@ var AddThought = React.createClass({
         this.props.dispatch(actions.addThoughtAsync(thought, this.props.currentUser));
         this.refs.newThought.value='';
     },
+    
     render: function(){
         return(
             <div>
@@ -25,7 +27,10 @@ var AddThought = React.createClass({
                 <Link to="/">
                     Home
                 </Link>
-                
+                <h2>Your thoughts</h2>
+                <div>
+                    <ThoughtList />
+                </div>
             </div>  
         );
     }

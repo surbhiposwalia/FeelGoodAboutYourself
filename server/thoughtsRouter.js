@@ -15,9 +15,13 @@ thoughtsRouter.get('/', function(req, res){
 });
 
 thoughtsRouter.get('/:from', function(req, res){
-    Thought.findOne(req.params.from, function(err, thoughts) {
-       if(err) return errorHandler(res);
+    User.findOne({username:req.params.from}, function(err,user){
+        if(err) return errorHandler(err);
+        console.log(user);
+    Thought.find({from: user._id}, function(err, thoughts) {
+      if(err) return errorHandler(res);
         return res.json(thoughts);
+    });
     });
 });
 

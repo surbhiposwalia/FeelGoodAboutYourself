@@ -12,13 +12,12 @@ import AddThought from './addThought';
 import routes from './routes';
 import actions from '../redux/actions';
 import {connect} from 'react-redux';
-import Error from './Error';
   
 var Thought = React.createClass({
-    componentWillMount:function(){
-        this.props.dispatch(actions.fetchThoughts());
-        //this.randomThought();
-    },
+    // componentWillMount:function(){
+    //     // this.props.dispatch(actions.fetchThoughts());
+    //     //this.randomThought();
+    // },
     randomThought: function(){
         const random = Math.floor(Math.random()*this.props.thoughts.length);
         this.props.dispatch(actions.selectThought(this.props.thoughts[random]));
@@ -28,11 +27,15 @@ var Thought = React.createClass({
     },
     
     render: function(){
+        if(!this.props.currentUser) {
+            this.props.dispatch(actions.fetchThoughts());
+        }else{
+            this.props.dispatch(actions.fetchThoughtsFromUser(this.props.currentUser));
+        }
         if(!this.props.isLoggedIn){
             return (
                 <div>
                     <nav>
-                        <Error error={this.props.feedback} />
                         <Link to="/">
                             Home
                         </Link>
@@ -61,7 +64,7 @@ var Thought = React.createClass({
             return (
                 <div>
                     <nav>
-                        <Error error={this.props.feedback} />
+                        <div>Welcome, {this.props.currentUser}!</div>
                         <Link to="/">
                             Home
                         </Link>
@@ -69,7 +72,6 @@ var Thought = React.createClass({
                         <Link to="/" onClick={this.logOut}>
                             Log Out   
                         </Link>
-                        
                     </nav>
                     
                     <main>

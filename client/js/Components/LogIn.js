@@ -22,10 +22,7 @@ var LogIn= React.createClass({
         // console.log(username, password);
         this.refs.username.value = '';
         this.refs.password.value = '';
-        setTimeout(function(){if(this.props.isLoggedIn){
-            this.context.router.push('/');
-        }},3000);
-        
+        //this.context.router.push('/');
     },
     
     
