@@ -27,6 +27,7 @@ app.use('/users', usersRouter);
 app.use('/thoughts', thoughtsRouter);
 
 function seedData() {
+    //maybe only needed in dev mode?
     User.count({}).then(userCount => {
         if (userCount === 0) {
             bcrypt.genSalt(10, (err, salt) => {
