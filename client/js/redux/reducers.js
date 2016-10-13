@@ -18,7 +18,8 @@ var thoughtReducer = function(state = initialState, action) { //ES6 babyyyyy
     switch(action.type) {
         case actions.FETCH_THOUGHTS_SUCCESS:
             return Object.assign({}, state, {
-                thoughts: action.payload
+                thoughts: action.payload,
+                currentThought: action.payload[Math.floor(Math.random() * action.payload.length)]
             });
             
         case actions.FETCH_THOUGHTS_ERROR:
@@ -27,7 +28,8 @@ var thoughtReducer = function(state = initialState, action) { //ES6 babyyyyy
             });
             
         case actions.ADD_THOUGHT_SUCCESS:
-            var newThoughts = state.thoughts.concat(action.payload);
+            var newThoughts = state.thoughts.concat({thought: action.payload});
+            console.log(action.payload);
             return Object.assign({}, state, {
                 thoughts: newThoughts,
                 feedback:"The thought is successfully added!"

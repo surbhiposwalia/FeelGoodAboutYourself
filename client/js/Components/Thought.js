@@ -14,10 +14,13 @@ import actions from '../redux/actions';
 import {connect} from 'react-redux';
   
 var Thought = React.createClass({
-    // componentWillMount:function(){
-    //     // this.props.dispatch(actions.fetchThoughts());
-    //     //this.randomThought();
-    // },
+    componentWillMount:function(){
+        if(!this.props.currentUser) {
+            this.props.dispatch(actions.fetchThoughts());
+        }else{
+            this.props.dispatch(actions.fetchThoughtsFromUser(this.props.currentUser));
+        }
+    },
     randomThought: function(){
         const random = Math.floor(Math.random()*this.props.thoughts.length);
         this.props.dispatch(actions.selectThought(this.props.thoughts[random]));
@@ -27,11 +30,11 @@ var Thought = React.createClass({
     },
     
     render: function(){
-        if(!this.props.currentUser) {
-            this.props.dispatch(actions.fetchThoughts());
-        }else{
-            this.props.dispatch(actions.fetchThoughtsFromUser(this.props.currentUser));
-        }
+        // if(!this.props.currentUser) {
+        //     this.props.dispatch(actions.fetchThoughts());
+        // }else{
+        //     this.props.dispatch(actions.fetchThoughtsFromUser(this.props.currentUser));
+        // }
         if(!this.props.isLoggedIn){
             return (
                 <div>

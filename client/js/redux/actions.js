@@ -169,7 +169,7 @@ var addThoughtAsync = function(thought, currentUser){
             .then(response => {
                 //if success, dispatch addThoughtSuccess(response);
                 console.log(response);
-                dispatch(addThoughtSuccess(response.data));
+                dispatch(addThoughtSuccess(thought));
             })
         .catch(err => {
             //if fail, dispatch addThoughtFail(error);

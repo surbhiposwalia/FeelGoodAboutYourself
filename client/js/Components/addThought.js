@@ -20,6 +20,7 @@ var AddThought = React.createClass({
             <div>
                 <Error error={this.props.error} />
                 <h1>Add a New Thought</h1><form onSubmit={this.addThought}>
+                <div>from: {this.props.currentUser}</div>
                 <input type="text" placeholder="Enter your Thought" ref="newThought" />
                 &nbsp;
                 <input type="submit" value="Add" />
@@ -27,7 +28,7 @@ var AddThought = React.createClass({
                 <Link to="/">
                     Home
                 </Link>
-                <h2>Your thoughts</h2>
+                <h2>Your previous thoughts</h2>
                 <div>
                     <ThoughtList />
                 </div>

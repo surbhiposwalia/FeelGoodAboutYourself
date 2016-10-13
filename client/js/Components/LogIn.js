@@ -33,7 +33,7 @@ var LogIn= React.createClass({
                 <br />
                 <Error error={this.props.feedback} />
                 Username:<input type='text' ref='username' placeholder="Enter your username" />
-                Password:<input type='text' ref='password' placeholder="Enter your password" />
+                Password:<input type='password' ref='password' placeholder="Enter your password" />
                 <input type='submit' value='LogIn' onClick={this.addUser} />
                 <br />
                 <Link to="/">Home</Link>

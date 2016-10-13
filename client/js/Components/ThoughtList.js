@@ -8,6 +8,7 @@ var ThoughtList = React.createClass({
     },
     
     render: function() {
+        //Thoughts don't immediately appear as I add them
         var theThoughts = this.props.userThoughts.map(function(thoughts, index) {
                     return (<li key={index}>{thoughts.thought}</li>);
                 });
