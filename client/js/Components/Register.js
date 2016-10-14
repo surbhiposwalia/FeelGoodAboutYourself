@@ -31,13 +31,29 @@ var Register= React.createClass({
     render:function(){
         return(
             <div>
-                <h1>Register</h1>
-                <br />
-                <Error error={this.props.feedback} />
-                Username:<input type='text' ref='username' placeholder="Enter your username" /><br />
-                Password:<input type='password' ref='password' placeholder="Enter your password" /><br />
-                Confirm Password:<input type='password' ref='confirmPassword' placeholder="Confirm your password" /><br />
-                <input type='submit' value='Register' onClick={this.addUser} /><br /><Link to="/">Home</Link> &nbsp;<Link to="/logIn">LogIn</Link>
+                <nav>
+                    <h1 className="title">Register</h1>
+                    <div className="nav-link">
+                        <Link id="no-dash" to="/">
+                            Home
+                        </Link>
+                    </div>
+                </nav>
+                <div className="center">
+                    <div className="login-user">
+                        Username: <input type='text' ref='username' placeholder="Enter your username" />
+                    </div>
+                    <div className="login-user">
+                        Password: <input type='password' ref='password' placeholder="Enter your password" />
+                    </div>
+                    <div className="login-user">
+                        Confirm Password: <input type='password' ref='confirmPassword' placeholder="Confirm your password" />
+                    </div>
+                    <center>
+                        <input type='submit' value='Register' onClick={this.addUser} />
+                    </center>
+                    <Error error={this.props.feedback} />
+                </div>
             </div>
         );
     }

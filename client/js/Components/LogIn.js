@@ -39,14 +39,25 @@ var LogIn= React.createClass({
         console.log(this.props.feedback);
         return (
             <div>
-                <h1>Log In</h1>
-                <br />
-                <Error error={this.props.feedback} />
-                Username:<input type='text' ref='username' placeholder="Enter your username" />
-                Password:<input type='password' ref='password' placeholder="Enter your password" />
-                <input type='submit' value='LogIn' onClick={this.addUser} />
-                <br />
-                <Link to="/">Home</Link>  
+                <nav>
+                    <h1 className="title">Log In</h1>
+                    <div className="nav-link">
+                        <Link id="no-dash" to="/">Home</Link>
+                    </div>
+                </nav>
+                <div className="center">
+                    <div className="login-user">
+                        Username: <input className="inputs" type='text' ref='username' placeholder="Enter your username" required />
+                    </div>
+                    <div className="login-user">
+                        Password: <input className="inputs" type='password' ref='password' placeholder="Enter your password" required />
+                    </div>
+                    <center>
+                        <input type='submit' value='Log In' onClick={this.addUser} />
+                    </center>
+                    <Error error={this.props.feedback} />
+                </div>
+                  
             </div>
         );
     }
