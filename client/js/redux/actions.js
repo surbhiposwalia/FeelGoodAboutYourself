@@ -31,13 +31,14 @@ var editThoughtError=function(error){
     }
 }
 
-var EDIT_THOUGHT= 'EDIT_THOUGHT';
-var editThought= function(thoughtId, newThought){
-    return{ 
-        thoughtId: thoughtId,
-        newThought: newThought
+var EDITABLE= 'EDITABLE';
+var editable=function(key){
+    return{
+        type:EDITABLE,
+        key:key
     }
 }
+
 
 var updateThought= function(thoughtId, newThought, currentUser){
     return function(dispatch) {
@@ -53,6 +54,37 @@ var updateThought= function(thoughtId, newThought, currentUser){
                 thought: newThought,
                 from: currentUser
         })})
+            .then(function(res) {
+                if(res.status < 200 || res.status >= 300) {
+                    //bad response :(
+                    var error = new Error(res.statusText);
+                    error.res = res;
+                    throw error;
+                }
+                return res.json();
+            })
+            .then(response => {
+                //if success, dispatch 
+                console.log(response);
+                dispatch(editThoughtSucess());
+            })
+        .catch(err => {
+            //if fail, dispatch 
+            console.log(err);
+            dispatch(editThoughtError(err));
+        });
+    };}
+    
+var deleteThought= function(thoughtId){
+    return function(dispatch) {
+        // make PUT request to Api
+        var endpoint = '/thoughts/'+thoughtId;
+        fetch(endpoint, {
+            method:'delete',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }})
             .then(function(res) {
                 if(res.status < 200 || res.status >= 300) {
                     //bad response :(
@@ -415,6 +447,11 @@ exports.fetchThoughtsErrorFromUser = fetchThoughtsErrorFromUser;
 exports.fetchThoughtsFromUser = fetchThoughtsFromUser;
 
 exports.updateThought=updateThought;
-exports.EDIT_THOUGHT=EDIT_THOUGHT;
+
+exports.EDITABLE=EDITABLE;
+exports.editable=editable;
+
 exports.EDIT_THOUGHT_SUCCESS=EDIT_THOUGHT_SUCCESS;
 exports.EDIT_THOUGHT_ERROR=EDIT_THOUGHT_ERROR;
+
+exports.deleteThought=deleteThought;

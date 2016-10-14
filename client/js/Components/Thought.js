@@ -33,10 +33,10 @@ var Thought = React.createClass({
         this.props.dispatch(actions.changeFeedback("Please LogIn to add thoughts!"));
     },
     homeToLoginFeedback:function(){
-      this.props.dispatch(actions.changeFeedback(''));  
+        this.props.dispatch(actions.changeFeedback(''));  
     },
     homeToAddThoughtFeedback:function(){
-        this.props.dispatch(actions.changeFeedback(''))
+        this.props.dispatch(actions.changeFeedback(''));
     },
     
     render: function(){
@@ -81,7 +81,6 @@ var Thought = React.createClass({
                             Log Out   
                         </Link>
                     </nav>
-                    
                     <main>
                         <h1>Thought: "{this.props.currentThought.thought}"</h1>
                         <p>- {this.props.currentThought.from}</p>

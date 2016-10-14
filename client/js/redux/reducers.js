@@ -11,10 +11,11 @@ var initialState = {
     currentThought: "",
     feedback:"",
     userThoughts: [],
-    onThoughtEdit:{
-        thoughtId:null,
-        newThought:null
-    }
+    editable:false
+    // onThoughtEdit:{
+    //     thoughtId:null,
+    //     newThought:null
+    // }
 };
 
 var thoughtReducer = function(state = initialState, action) { //ES6 babyyyyy
@@ -33,7 +34,6 @@ var thoughtReducer = function(state = initialState, action) { //ES6 babyyyyy
             
         case actions.ADD_THOUGHT_SUCCESS:
             var newThoughts = state.thoughts.concat({thought: action.payload});
-            console.log(action.payload);
             return Object.assign({}, state, {
                 thoughts: newThoughts,
                 feedback:"The thought is successfully added!"
@@ -100,6 +100,16 @@ var thoughtReducer = function(state = initialState, action) { //ES6 babyyyyy
         case actions.FETCH_THOUGHTS_ERROR_FROM_USER:
             return Object.assign({}, state, {
                 error: action.error
+            });
+            
+        case actions.EDITABLE:
+            return Object.assign({}, state, {
+                editable: action.key
+            });
+            
+        case actions.EDIT_THOUGHT_SUCCESS:
+            return Object.assign({}, state, {
+                editable: false
             });
             
         default:

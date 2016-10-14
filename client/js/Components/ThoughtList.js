@@ -11,13 +11,14 @@ var ThoughtList = React.createClass({
     render: function() {
         var currentUser=this.props.currentUser;
         //Thoughts don't immediately appear as I add them
-        var theThoughts = this.props.userThoughts.map(function(thoughts, index) {
-                    return (<ThoughtItem thoughts={thoughts} key={index} currentUser={currentUser}/>);
+        var ThoughtItems = this.props.userThoughts.map(function(thought, index) {
+            console.log(thought._id);
+                    return (<ThoughtItem thoughts={thought} key={thought._id} currentUser={currentUser}/>);
                 });
         return (
             <div>
                 <ul>
-                    {theThoughts}
+                    {ThoughtItems} 
                 </ul>
             </div>
         );
