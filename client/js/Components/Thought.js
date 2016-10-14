@@ -44,26 +44,29 @@ var Thought = React.createClass({
             return (
                 <div>
                     <nav>
-                        <Link to="/">
+                        <h1>Feel Good About Yourself</h1>
+                        <div className="nav-link">
+                            <Link to="/">
                             Home
-                        </Link>
-                        &nbsp; 
-                        <Link to="/logIn" onClick={this.homeToLoginFeedback}>
-                            Log In
-                        </Link>
-                        &nbsp; 
-                        <Link to="/register">
-                            Register
-                        </Link>
+                            </Link>
+                            &nbsp; 
+                            <Link to="/logIn" onClick={this.homeToLoginFeedback}>
+                                Log In
+                            </Link>
+                            &nbsp; 
+                            <Link to="/register">
+                                Register
+                            </Link>
+                        </div>
                     </nav>
                     
                     <main>
-                        <h1>Thought: "{this.props.currentThought.thought}"</h1>
+                        <h2>"{this.props.currentThought.thought}"</h2>
                         <p>- {this.props.currentThought.from}</p>
                         <Link to="/logIn" onClick={this.addAfterLoginFeedback}>
                             Want to add a thought?
                         </Link>
-                        <input type = 'button' value="Change the Thought" onClick={this.randomThought} />
+                        <input className="the-button" type = 'button' value="Change the Thought" onClick={this.randomThought} />
                     </main>
                 </div>
             );
@@ -72,7 +75,7 @@ var Thought = React.createClass({
             return (
                 <div>
                     <nav>
-                        <div>Welcome, {this.props.currentUser}!</div>
+                        <h1>Feel Good About Yourself</h1>
                         <Link to="/">
                             Home
                         </Link>
@@ -80,14 +83,15 @@ var Thought = React.createClass({
                         <Link to="/" onClick={this.logOut}>
                             Log Out   
                         </Link>
+                        <div>Welcome, {this.props.currentUser}!</div>
                     </nav>
                     <main>
-                        <h1>Thought: "{this.props.currentThought.thought}"</h1>
+                        <h2>"{this.props.currentThought.thought}"</h2>
                         <p>- {this.props.currentThought.from}</p>
                         <Link to="/addThought" onClick={this.homeToAddThoughtFeedback}>
                             Want to add a thought?
                         </Link>
-                        <input type = 'button' value="Change the Thought" onClick={this.randomThought} />
+                        <input className="the-button" type = 'button' value="Change the Thought" onClick={this.randomThought} />
                     </main>
                 </div>
             );
