@@ -5,6 +5,9 @@ import {Link} from 'react-router';
 import actions from '../redux/actions';
 
 var Register= React.createClass({
+    componentDidMount:function(){
+      this.props.dispatch(actions.changeFeedback(''));  
+    },
     addUser: function(){
 
         var username= this.refs.username.value;
@@ -15,11 +18,14 @@ var Register= React.createClass({
         // }
         if(password === confirmPassword){
             this.props.dispatch(actions.registerUserAsync(username,password));
+            this.context.router.push('/');
+        }
+        else {
+            this.props.dispatch(actions.changeFeedback('Sorry, we could\'nt process your request! '));
         }
         this.refs.username.value='';
         this.refs.password.value='';
         this.refs.confirmPassword.value='';
-       // this.context.router.push('/');
     },
     
     render:function(){
@@ -31,7 +37,7 @@ var Register= React.createClass({
                 Username:<input type='text' ref='username' placeholder="Enter your username" /><br />
                 Password:<input type='password' ref='password' placeholder="Enter your password" /><br />
                 Confirm Password:<input type='password' ref='confirmPassword' placeholder="Confirm your password" /><br />
-                <input type='submit' value='Register' onClick={this.addUser} /><br /><Link to="/">Home</Link><Link to="/logIn">LogIn</Link>
+                <input type='submit' value='Register' onClick={this.addUser} /><br /><Link to="/">Home</Link> &nbsp;<Link to="/logIn">LogIn</Link>
             </div>
         );
     }

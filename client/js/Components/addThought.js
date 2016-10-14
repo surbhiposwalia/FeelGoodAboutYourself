@@ -13,12 +13,15 @@ var AddThought = React.createClass({
         //dispatch action
         this.props.dispatch(actions.addThoughtAsync(thought, this.props.currentUser));
         this.refs.newThought.value='';
+        this.context.router.push('/addThought');
+        this.props.dispatch(actions.changeFeedback('You have successfully added the thought!!'));
+        this.props.dispatch(actions.fetchThoughtsFromUser(this.props.currentUser));
     },
     
     render: function(){
         return(
             <div>
-                <Error error={this.props.error} />
+                <Error error={this.props.feedback} />
                 <h1>Add a New Thought</h1><form onSubmit={this.addThought}>
                 <div>from: {this.props.currentUser}</div>
                 <input type="text" placeholder="Enter your Thought" ref="newThought" />
@@ -37,6 +40,10 @@ var AddThought = React.createClass({
     }
 });
 
+AddThought.contextTypes = {
+    router: React.PropTypes.object.isRequired
+};
+
 let mapStateToProps= function(state, props){
     return{
         isLoggedIn: state.isLoggedIn, 
@@ -45,6 +52,7 @@ let mapStateToProps= function(state, props){
         basicAuth: state.basicAuth,
         error: state.error,
         currentThought: state.currentThought,
+        feedback:state.feedback
     };
 };
 

@@ -15,9 +15,10 @@ import {connect} from 'react-redux';
   
 var Thought = React.createClass({
     componentWillMount:function(){
-        if(!this.props.currentUser) {
-            this.props.dispatch(actions.fetchThoughts());
-        }else{
+        if(!this.props.currentUser){
+            this.props.dispatch(actions.fetchThoughts(this.props.currentUser));
+        }
+        else {
             this.props.dispatch(actions.fetchThoughtsFromUser(this.props.currentUser));
         }
     },
@@ -28,13 +29,17 @@ var Thought = React.createClass({
     logOut:function(){
         this.props.dispatch(actions.destroySession());
     },
+    addAfterLoginFeedback:function(){
+        this.props.dispatch(actions.changeFeedback("Please LogIn to add thoughts!"));
+    },
+    homeToLoginFeedback:function(){
+      this.props.dispatch(actions.changeFeedback(''));  
+    },
+    homeToAddThoughtFeedback:function(){
+        this.props.dispatch(actions.changeFeedback(''))
+    },
     
     render: function(){
-        // if(!this.props.currentUser) {
-        //     this.props.dispatch(actions.fetchThoughts());
-        // }else{
-        //     this.props.dispatch(actions.fetchThoughtsFromUser(this.props.currentUser));
-        // }
         if(!this.props.isLoggedIn){
             return (
                 <div>
@@ -43,7 +48,7 @@ var Thought = React.createClass({
                             Home
                         </Link>
                         &nbsp; 
-                        <Link to="/logIn">
+                        <Link to="/logIn" onClick={this.homeToLoginFeedback}>
                             Log In
                         </Link>
                         &nbsp; 
@@ -55,7 +60,7 @@ var Thought = React.createClass({
                     <main>
                         <h1>Thought: "{this.props.currentThought.thought}"</h1>
                         <p>- {this.props.currentThought.from}</p>
-                        <Link to="/logIn">
+                        <Link to="/logIn" onClick={this.addAfterLoginFeedback}>
                             Want to add a thought?
                         </Link>
                         <input type = 'button' value="Change the Thought" onClick={this.randomThought} />
@@ -80,7 +85,7 @@ var Thought = React.createClass({
                     <main>
                         <h1>Thought: "{this.props.currentThought.thought}"</h1>
                         <p>- {this.props.currentThought.from}</p>
-                        <Link to="/addThought">
+                        <Link to="/addThought" onClick={this.homeToAddThoughtFeedback}>
                             Want to add a thought?
                         </Link>
                         <input type = 'button' value="Change the Thought" onClick={this.randomThought} />
@@ -105,6 +110,4 @@ let mapStateToProps= function(state, props){
 
 export default connect(mapStateToProps)(Thought);
 
-//if isLoggedIn == true then , on home page add link to logout;
-//should render thought on page loads
-//should refresh feedback when changing pages
+

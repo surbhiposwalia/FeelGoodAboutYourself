@@ -14,19 +14,29 @@ var connect = require('react-redux').connect;
 import Error from './Error';
 
 var LogIn= React.createClass({
+    
+    componentDidMount:function(){
+        // this.props.dispatch(actions.changeFeedback(''));
+    },
+    
     addUser: function(event){
         event.preventDefault();
         var username = this.refs.username.value;
         var password = this.refs.password.value;
-        this.props.dispatch(actions.createSessionAsync(username, password));
-        // console.log(username, password);
+        this.props.dispatch(actions.createSessionAsync(username, password,this));
         this.refs.username.value = '';
         this.refs.password.value = '';
-        //this.context.router.push('/');
+        
     },
-    
+
+    transitionToHome:function(){
+      if(this.props.isLoggedIn){
+            this.context.router.push('/');
+        }  
+    }, 
     
     render: function(){
+        console.log(this.props.feedback);
         return (
             <div>
                 <h1>Log In</h1>
@@ -36,15 +46,14 @@ var LogIn= React.createClass({
                 Password:<input type='password' ref='password' placeholder="Enter your password" />
                 <input type='submit' value='LogIn' onClick={this.addUser} />
                 <br />
-                <Link to="/">Home</Link>
-                
+                <Link to="/">Home</Link>  
             </div>
         );
     }
 });
 
-let mapStateToProps= function(state, props){
-    return{
+let mapStateToProps = function(state, props){
+    return {
         isLoggedIn: state.isLoggedIn, 
         thoughts: state.thoughts, 
         currentUser: state.currentUser,

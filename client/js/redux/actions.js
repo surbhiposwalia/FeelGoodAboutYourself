@@ -247,16 +247,16 @@ var registerUserError= function(err){
     }
 }
 //createSessionAsync (log in user)
-var createSessionAsync = function(username, password) {
+var createSessionAsync = function(username, password, login) {
     return function(dispatch) {
         var endpoint = '/users/login';
-        fetch(endpoint, {
+        return fetch(endpoint, {
             method:'post',
             //var headers = new headers
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
-        },
+            },
                 body:JSON.stringify({
                 username: username,
                 password: password
@@ -273,6 +273,8 @@ var createSessionAsync = function(username, password) {
             .then(response => {
                 //if success, dispatch addThoughtSuccess(response);
                 return dispatch(createSessionSuccess(username));
+            }).then(function(){
+                login.transitionToHome();
             })
         .catch(err => {
             //if fail, dispatch addThoughtFail(error);

@@ -1,16 +1,17 @@
 import React from 'react';
 import actions from '../redux/actions';
 import {connect} from 'react-redux';
+import ThoughtItem from './ThoughtItem';
 
 var ThoughtList = React.createClass({
     componentWillMount: function() {
         this.props.dispatch(actions.fetchThoughtsFromUser(this.props.currentUser));
     },
-    
+//<li key={index} onDoubleClick={}>{thoughts.thought}</li>    
     render: function() {
         //Thoughts don't immediately appear as I add them
         var theThoughts = this.props.userThoughts.map(function(thoughts, index) {
-                    return (<li key={index}>{thoughts.thought}</li>);
+                    return (<ThoughtItem thoughts={thoughts} key={index}/>);
                 });
         return (
             <div>
