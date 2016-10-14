@@ -32,11 +32,12 @@ var AddThought = React.createClass({
                 </nav>
                 <form onSubmit={this.addThought}>
                     <Error error={this.props.feedback} />
+                    <br />
                     <input id="thought-box" type="text" placeholder="Enter your Thought" ref="newThought" />
                     &nbsp;
                     <input className="fancy-button" type="submit" value="Add" />
                 </form>
-                <h2>Your previous thoughts</h2>
+                <h1>Your previous thoughts</h1>
                 <div>
                     <ThoughtList />
                 </div>

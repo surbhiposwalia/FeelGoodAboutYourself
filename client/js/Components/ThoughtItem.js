@@ -20,8 +20,8 @@ var ThoughtItem = React.createClass({
     },
     render:function(props){
     return   (<p>
-                <button
-                    value='X' onClick={this.deleteThought}>X
+                <button>
+                    <i onClick={this.deleteThought} class="fa fa-trash fancy-button" aria-hidden="true">X</i>
                 </button>
                 <li 
                     onDoubleClick={this.edit}>{this.props.thoughts.thought}
