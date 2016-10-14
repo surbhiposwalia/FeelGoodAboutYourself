@@ -16,6 +16,64 @@ var changeFeedback= function(feedback){
     }
 }
 
+var EDIT_THOUGHT_SUCCESS='EDIT_THOUGHT_SUCCESS';
+var editThoughtSucess=function(){
+    return{
+        type:EDIT_THOUGHT_SUCCESS
+    }
+}
+
+var EDIT_THOUGHT_ERROR='EDIT_THOUGHT_ERROR';
+var editThoughtError=function(error){
+    return{
+        type:EDIT_THOUGHT_ERROR,
+        error:error
+    }
+}
+
+var EDIT_THOUGHT= 'EDIT_THOUGHT';
+var editThought= function(thoughtId, newThought){
+    return{ 
+        thoughtId: thoughtId,
+        newThought: newThought
+    }
+}
+
+var updateThought= function(thoughtId, newThought, currentUser){
+    return function(dispatch) {
+        // make PUT request to Api
+        var endpoint = '/thoughts/'+thoughtId;
+        fetch(endpoint, {
+            method:'put',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify({
+                thought: newThought,
+                from: currentUser
+        })})
+            .then(function(res) {
+                if(res.status < 200 || res.status >= 300) {
+                    //bad response :(
+                    var error = new Error(res.statusText);
+                    error.res = res;
+                    throw error;
+                }
+                return res.json();
+            })
+            .then(response => {
+                //if success, dispatch 
+                console.log(response);
+                dispatch(editThoughtSucess());
+            })
+        .catch(err => {
+            //if fail, dispatch 
+            console.log(err);
+            dispatch(editThoughtError(err));
+        });
+    };}
+
 function fetchThoughts() {
     return function(dispatch) {
         var endpoint = '/thoughts';
@@ -355,3 +413,8 @@ exports.FETCH_THOUGHTS_ERROR_FROM_USER = FETCH_THOUGHTS_ERROR_FROM_USER;
 exports.fetchThoughtsErrorFromUser = fetchThoughtsErrorFromUser;
 
 exports.fetchThoughtsFromUser = fetchThoughtsFromUser;
+
+exports.updateThought=updateThought;
+exports.EDIT_THOUGHT=EDIT_THOUGHT;
+exports.EDIT_THOUGHT_SUCCESS=EDIT_THOUGHT_SUCCESS;
+exports.EDIT_THOUGHT_ERROR=EDIT_THOUGHT_ERROR;

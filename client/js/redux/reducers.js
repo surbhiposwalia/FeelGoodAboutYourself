@@ -10,7 +10,11 @@ var initialState = {
     error: "",
     currentThought: "",
     feedback:"",
-    userThoughts: []
+    userThoughts: [],
+    onThoughtEdit:{
+        thoughtId:null,
+        newThought:null
+    }
 };
 
 var thoughtReducer = function(state = initialState, action) { //ES6 babyyyyy

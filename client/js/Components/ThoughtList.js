@@ -9,9 +9,10 @@ var ThoughtList = React.createClass({
     },
 //<li key={index} onDoubleClick={}>{thoughts.thought}</li>    
     render: function() {
+        var currentUser=this.props.currentUser;
         //Thoughts don't immediately appear as I add them
         var theThoughts = this.props.userThoughts.map(function(thoughts, index) {
-                    return (<ThoughtItem thoughts={thoughts} key={index}/>);
+                    return (<ThoughtItem thoughts={thoughts} key={index} currentUser={currentUser}/>);
                 });
         return (
             <div>
