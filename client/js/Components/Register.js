@@ -50,7 +50,7 @@ var Register= React.createClass({
                         Confirm Password: <input type='password' ref='confirmPassword' placeholder="Confirm your password" />
                     </div>
                     <center>
-                        <input type='submit' value='Register' onClick={this.addUser} />
+                        <input className="fancy-button" type='submit' value='Register' onClick={this.addUser} />
                     </center>
                     <Error error={this.props.feedback} />
                 </div>

@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import actions from '../redux/actions';
 import {connect} from 'react-redux';
 import StarRater from './StarRater';
-
 var ThoughtItem = React.createClass({
     editThought:function(props){
         var editedThought= this.refs.input.value;
@@ -33,12 +32,10 @@ var ThoughtItem = React.createClass({
     
 }
 });
-
 let mapStateToProps= function(state, props){
     return{
             editable:state.editable
     };
 };
-
 var Container= connect(mapStateToProps)(ThoughtItem)
 export default Container;

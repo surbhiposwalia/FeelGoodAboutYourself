@@ -23,19 +23,18 @@ var AddThought = React.createClass({
             <div>
                 <nav>
                     <h1 className="title">Add a New Thought</h1>
+                    <div className="welcome">adding thoughts from: {this.props.currentUser}</div>
                     <div className="nav-link">
-                        <Link to="/">
+                        <Link id="no-dash" to="/">
                             Home
                         </Link>
                     </div>
                 </nav>
-                
-                <Error error={this.props.feedback} />
                 <form onSubmit={this.addThought}>
-                    <div>from: {this.props.currentUser}</div>
-                    <input type="text" placeholder="Enter your Thought" ref="newThought" />
+                    <Error error={this.props.feedback} />
+                    <input id="thought-box" type="text" placeholder="Enter your Thought" ref="newThought" />
                     &nbsp;
-                    <input type="submit" value="Add" />
+                    <input className="fancy-button" type="submit" value="Add" />
                 </form>
                 <h2>Your previous thoughts</h2>
                 <div>

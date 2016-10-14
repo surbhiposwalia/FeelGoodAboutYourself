@@ -137,3 +137,26 @@ li {
     border-radius: 5px;
 }
 
+#thought-box {
+    height: 50px;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.fancy-button {
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    color: black;
+    border: 2px solid #008CBA;
+    background-color: #C2F0FF;
+    font-size: 14px;
+    width: 50px;
+    height: 35px;
+}
+
+.fancy-button:hover {
+    background-color: #008CBA;
+    color: white;
+    cursor: pointer;
+}
