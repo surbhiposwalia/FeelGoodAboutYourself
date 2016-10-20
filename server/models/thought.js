@@ -10,6 +10,10 @@ var ThoughtSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true
+    },
+    stars:{
+        type: Number,
+        required: true
     }
 });
 

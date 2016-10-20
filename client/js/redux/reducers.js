@@ -11,11 +11,8 @@ var initialState = {
     currentThought: "",
     feedback:"",
     userThoughts: [],
-    editable:false
-    // onThoughtEdit:{
-    //     thoughtId:null,
-    //     newThought:null
-    // }
+    editable:false,
+    stars:0
 };
 
 var thoughtReducer = function(state = initialState, action) { //ES6 babyyyyy
@@ -24,7 +21,15 @@ var thoughtReducer = function(state = initialState, action) { //ES6 babyyyyy
         case actions.FETCH_THOUGHTS_SUCCESS:
             return Object.assign({}, state, {
                 thoughts: action.payload,
+                stars:action.payload.stars,
                 currentThought: action.payload[Math.floor(Math.random() * action.payload.length)]
+            });
+            
+        case actions.FETCH_THOUGHT_SUCCESS:
+            console.log('inside reducers'+action.payload);
+            return Object.assign({}, state, {
+                stars:action.payload.stars,
+                currentThought: action.payload
             });
             
         case actions.FETCH_THOUGHTS_ERROR:
@@ -36,6 +41,7 @@ var thoughtReducer = function(state = initialState, action) { //ES6 babyyyyy
             var newThoughts = state.thoughts.concat({thought: action.payload});
             return Object.assign({}, state, {
                 thoughts: newThoughts,
+                stars: action.stars,
                 feedback:"The thought is successfully added!"
             });
             

@@ -12,11 +12,12 @@ import AddThought from './addThought';
 import routes from './routes';
 import actions from '../redux/actions';
 import {connect} from 'react-redux';
+import StarRater from './StarRater';
   
 var Thought = React.createClass({
     componentWillMount:function(){
         if(!this.props.currentUser){
-            this.props.dispatch(actions.fetchThoughts(this.props.currentUser));
+            this.props.dispatch(actions.fetchThoughts());
         }
         else {
             this.props.dispatch(actions.fetchThoughtsFromUser(this.props.currentUser));
@@ -37,6 +38,12 @@ var Thought = React.createClass({
     },
     homeToAddThoughtFeedback:function(){
         this.props.dispatch(actions.changeFeedback(''));
+    },
+    changeRating:function(rating){
+        console.log(this.props.currentThought);
+        this.props.dispatch(actions.updateThought(this.props.currentThought._id, this.props.currentThought.thought,this.props.currentThought.from, rating));
+        this.props.dispatch(actions.fetchThoughtById(this.props.currentThought._id));
+      
     },
     
     render: function(){
@@ -61,7 +68,7 @@ var Thought = React.createClass({
                     </nav>
                     
                     <main>
-                        <h2>"{this.props.currentThought.thought}"</h2>
+                        <h2>"{this.props.currentThought.thought}"</h2><br /><StarRater stars= {this.props.currentThought.stars} onChange = {this.changeRating} /><br />
                         <input className="the-button" type = 'button' value="Change the Thought" onClick={this.randomThought} />
                         <br />
                         <br />
@@ -90,7 +97,7 @@ var Thought = React.createClass({
                         <div className="welcome">Welcome, {this.props.currentUser}!</div>
                     </nav>
                     <main>
-                        <h2>"{this.props.currentThought.thought}"</h2>
+                        <h2>"{this.props.currentThought.thought}"</h2><br /><StarRater stars= {this.props.stars} onChange = {this.changeRating} /><br />
                         <input className="the-button" type = 'button' value="Change the Thought" onClick={this.randomThought} />
                         <br />
                         <br />
@@ -112,7 +119,8 @@ let mapStateToProps= function(state, props){
         basicAuth: state.basicAuth,
         error: state.error,
         currentThought: state.currentThought,
-        feedback:state.feedback
+        feedback:state.feedback,
+        stars:state.stars
     };
 };
 

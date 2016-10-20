@@ -40,7 +40,7 @@ var editable=function(key){
 }
 
 
-var updateThought= function(thoughtId, newThought, currentUser){
+var updateThought= function(thoughtId, newThought, currentUser,stars){
     return function(dispatch) {
         // make PUT request to Api
         var endpoint = '/thoughts/'+thoughtId;
@@ -52,7 +52,8 @@ var updateThought= function(thoughtId, newThought, currentUser){
             },
             body:JSON.stringify({
                 thought: newThought,
-                from: currentUser
+                from: currentUser,
+                stars:stars
         })})
             .then(function(res) {
                 if(res.status < 200 || res.status >= 300) {
@@ -144,6 +145,44 @@ function fetchThoughtsError(error) {
         error: error
     };
 }
+var FETCH_THOUGHT_SUCCESS = 'FETCH_THOUGHT_SUCCESS';
+function fetchThoughtSuccess(thought) {
+    console.log('inside action',thought);
+    return {
+        type: FETCH_THOUGHT_SUCCESS,
+        payload: thought
+    };
+}
+
+var FETCH_THOUGHT_ERROR = 'FETCH_THOUGHT_ERROR';
+function fetchThoughtError(error) {
+    return {
+        type: FETCH_THOUGHT_ERROR,
+        error: error
+    };
+}
+
+function fetchThoughtById(thoughtId) {
+    return function(dispatch) {
+        var endpoint = '/thoughts/thought/'+thoughtId;
+        return fetch(endpoint)
+            .then(function(res) {
+                if(res.status < 200 || res.status >= 300) {
+                    //bad response :(
+                    var error = new Error(res.statusText);
+                    error.res = res;
+                    throw error;
+                }
+                return res.json();
+            })
+            .then(function(data) {
+                dispatch(fetchThoughtSuccess(data));
+            })
+        .catch(function(error) {
+            dispatch(fetchThoughtError(error));
+        });
+    };
+}
 
 //action to fetch thought endpoint for API (async)
 function fetchThoughts() {
@@ -218,10 +257,11 @@ function fetchThoughtsFromUser(currUser) {
 
 
 var ADD_THOUGHT_SUCCESS = 'ADD_THOUGHT_SUCCESS';
-var addThoughtSuccess = function(thought){
+var addThoughtSuccess = function(thought,stars){
     return {
         type: ADD_THOUGHT_SUCCESS,
-        payload: thought
+        payload: thought,
+        stars: stars
     };
 };
 
@@ -245,7 +285,8 @@ var addThoughtAsync = function(thought, currentUser){
         },
                 body:JSON.stringify({
                 thought: thought,
-                from: currentUser
+                from: currentUser,
+                stars: 5
         })})
             .then(function(res) {
                 if(res.status < 200 || res.status >= 300) {
@@ -336,6 +377,9 @@ var registerUserError= function(err){
         error:err
     }
 }
+
+
+
 //createSessionAsync (log in user)
 var createSessionAsync = function(username, password, login) {
     return function(dispatch) {
@@ -382,21 +426,7 @@ var destroySession = function() {
     };
 };
 
-// //DESTROY_SESSION_ERROR
-// var DESTROY_SESSION_ERROR = 'DESTROY_SESSION_ERROR';
-// var destroySessionError = function(error) {
-//     return {
-//         type: DESTROY_SESSION_ERROR,
-//         error: error
-//     };
-// };
 
-// //destorySessionAsync (log out user)
-// var destroySessionAsync = function() {
-//     return function(dispatch) {
-        
-//     }
-// }
 exports.CHANGE_FEEDBACK=CHANGE_FEEDBACK;
 exports.changeFeedback=changeFeedback;
 
@@ -455,3 +485,10 @@ exports.EDIT_THOUGHT_SUCCESS=EDIT_THOUGHT_SUCCESS;
 exports.EDIT_THOUGHT_ERROR=EDIT_THOUGHT_ERROR;
 
 exports.deleteThought=deleteThought;
+exports.FETCH_THOUGHT_SUCCESS = FETCH_THOUGHT_SUCCESS;
+exports.fetchThoughtSuccess = fetchThoughtSuccess;
+
+exports.FETCH_THOUGHT_ERROR = FETCH_THOUGHT_ERROR;
+exports.fetchThoughtError = fetchThoughtError;
+
+exports.fetchThoughtById = fetchThoughtById;

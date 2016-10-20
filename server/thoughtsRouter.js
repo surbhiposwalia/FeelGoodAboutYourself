@@ -14,6 +14,17 @@ thoughtsRouter.get('/', function(req, res) {
     });
 });
 
+thoughtsRouter.get('/thought/:thoughtId', function(req, res) {
+    Thought.findOne({
+        _id: req.params.thoughtId
+    }, function(err, thought) {
+        if (err) return errorHandler(err);
+        console.log('inside get thought',thought);
+            return res.json(thought);
+        });
+    
+});
+
 thoughtsRouter.get('/:from', function(req, res) {
     User.findOne({
         username: req.params.from
@@ -32,6 +43,7 @@ thoughtsRouter.get('/:from', function(req, res) {
 thoughtsRouter.post('/', function(req, res) {
     let thought = req.body.thought;
     let from = req.body.from;
+    let stars = req.body.stars;
 
     if (!req.body) {
         return res.status(404).json({
@@ -85,7 +97,8 @@ thoughtsRouter.post('/', function(req, res) {
         console.log(user);
         var newThought = new Thought({
             thought: thought,
-            from: user._id
+            from: user._id,
+            stars: stars
         })
         newThought.save(function(err, thought) {
             if (err) return errorHandler(res);
@@ -99,7 +112,9 @@ thoughtsRouter.put('/:thoughtId', function(req, res) {
     let thought = req.body.thought;
     let from = req.body.from;
     let thoughtId = req.params.thoughtId;
-    console.log(thoughtId, req.body, req.params);
+    let stars=req.body.stars;
+    
+    
     if (!req.body) {
         return res.status(404).json({
             message: "No request body "
@@ -145,17 +160,18 @@ thoughtsRouter.put('/:thoughtId', function(req, res) {
             message: "Incorrect field length"
         });
     }
-    User.findOne({username:from},function(err,user){
-        if(err) return errorHandler(res);
+    
         
     Thought.findByIdAndUpdate(thoughtId, {
         thought: thought,
-        from: user._id
-    }, function(err, thoughts) {
+        from: from,
+        stars:stars
+    }, 
+    function(err, thoughts) {
         if (err) return errorHandler(res);
         return res.json({});
     });
-    })
+
 });
 
 thoughtsRouter.delete('/:thoughtId', function(req, res) {

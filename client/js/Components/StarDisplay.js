@@ -1,6 +1,6 @@
 var React= require('react');
 
-var StarRater = React.createClass({
+var StarDisplay = React.createClass({
     render: function(){
         var stars =[];
         for (var i=0; i<5; i++){
@@ -13,7 +13,7 @@ var StarRater = React.createClass({
                 className='fa fa-heart-o';
             }
             var star=(
-                <i className={className} key={i} onClick={this.props.onChange.bind(null, i + 1)}>
+                <i className={className} key={i}>
                 </i>);
                 stars.push(star);
         }
@@ -22,6 +22,4 @@ var StarRater = React.createClass({
 
 });
 
-module.exports = StarRater;
-
-//onClick={this.props.onChange.bind(null, i + 1)}
+module.exports = StarDisplay;
