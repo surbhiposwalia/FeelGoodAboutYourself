@@ -3,6 +3,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import User from './models/user';
+import Thought from './models/thought';
 // import jsonParser from 'bodyParser';
 var jsonParser = bodyParser.json();
 import bcrypt from 'bcryptjs';
@@ -31,10 +32,15 @@ function seedData() {
         if (userCount === 0) {
             bcrypt.genSalt(10, (err, salt) => {
                bcrypt.hash('password', salt, (err, hash) => {
-                    for (let i = 0; i < 10; i++){
-                        User.create({ username: 'user' + Math.floor(Math.random() * 10000), password: hash });
-                    }
-                    console.log("Created 10 users");
+                    User.create({ username: 'user1', password: hash })
+                    .then(function(user){
+                        Thought.create({thought: 'Welcome!', from: user._id, stars: 5})
+                        .then(function(){
+                            console.log("Created 1 user and 1 thought");
+                        })
+                        .catch(console.error);
+                    })
+                    .catch(console.error);
                });
             });
         }
@@ -42,7 +48,7 @@ function seedData() {
 }
 
 var runServer = function(callback) {
-    var databaseUri = process.env.DATABASE_URI || global.databaseUri || 'mongodb://localhost/FeelsGood';
+    var databaseUri = process.env.DATABASE_URI || global.databaseUri || 'mongodb://localhost/FeelsGood6';
     mongoose
         .connect(databaseUri)
         .then(function() {

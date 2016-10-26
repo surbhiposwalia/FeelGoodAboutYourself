@@ -26,7 +26,6 @@ var thoughtReducer = function(state = initialState, action) { //ES6 babyyyyy
             });
             
         case actions.FETCH_THOUGHT_SUCCESS:
-            console.log('inside reducers'+action.payload);
             return Object.assign({}, state, {
                 stars:action.payload.stars,
                 currentThought: action.payload
@@ -63,17 +62,13 @@ var thoughtReducer = function(state = initialState, action) { //ES6 babyyyyy
             });
             
         case actions.CREATE_SESSION_SUCCESS:
-            // return state object with currentUser: action.payload.username, basicAuth: action.payload.basicAuth
-           console.log(action.payload);
-           
             return Object.assign({}, state, {
                 currentUser: action.payload,
-                isLoggedIn:true,
-                feedback:'You are successfully logged In!, Welcome '+action.payload
+                isLoggedIn: true,
+                feedback:'You are successfully logged In!, Welcome ' + action.payload
             });
         
         case actions.CREATE_SESSION_ERROR:
-            
             // return state object with error: action.error
             return Object.assign({}, state, {
                 error: action.error,
@@ -88,7 +83,6 @@ var thoughtReducer = function(state = initialState, action) { //ES6 babyyyyy
             });
             
         case actions.SELECT_THOUGHT:
-            //console.log(action.payload);
             return Object.assign({}, state, {
                 currentThought: action.payload
             });
