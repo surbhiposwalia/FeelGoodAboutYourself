@@ -5,15 +5,12 @@ import routes from './routes';
 import { browserHistory } from 'react-router'
 import {Link} from 'react-router';
 import Thought from './Thought';
-var router = require('react-router');
-var Router = router.Router;
-var Route = router.Route;
-var hashHistory = router.hashHistory;
-
-var connect = require('react-redux').connect;
 import Error from './Error';
+import router from 'react-router';
+import {Router, Route, hashHistory, IndexRoute} from 'react-router';
+import {connect} from 'react-redux';
 
-var LogIn= React.createClass({
+const LogIn= React.createClass({
     
     componentDidMount:function(){
         // this.props.dispatch(actions.changeFeedback(''));

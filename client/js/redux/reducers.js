@@ -1,10 +1,7 @@
-//reducers
-
 var actions = require('./actions');
-
 var initialState = {
-    isLoggedIn: false, //once the user is logged in, isLoggedIn = true;
-    thoughts: [], //needs to get the list of thoughts from the database,
+    isLoggedIn: false, 
+    thoughts: [],
     currentUser: "",
     basicAuth: "",
     error: "",
@@ -15,8 +12,7 @@ var initialState = {
     stars:0
 };
 
-var thoughtReducer = function(state = initialState, action) { //ES6 babyyyyy
-    //state = state || initialState;
+const thoughtReducer = function(state = initialState, action) {
     switch(action.type) {
         case actions.FETCH_THOUGHTS_SUCCESS:
             return Object.assign({}, state, {
@@ -37,7 +33,9 @@ var thoughtReducer = function(state = initialState, action) { //ES6 babyyyyy
             });
             
         case actions.ADD_THOUGHT_SUCCESS:
-            var newThoughts = state.thoughts.concat({thought: action.payload});
+            console.log(action.payload);
+            var newThoughts = state.thoughts.concat(action.payload);
+            
             return Object.assign({}, state, {
                 thoughts: newThoughts,
                 stars: action.stars,
@@ -69,14 +67,12 @@ var thoughtReducer = function(state = initialState, action) { //ES6 babyyyyy
             });
         
         case actions.CREATE_SESSION_ERROR:
-            // return state object with error: action.error
             return Object.assign({}, state, {
                 error: action.error,
                 feedback: 'Sorry! you are not authorized. Please register to logIn!!' 
             });
 
         case actions.DESTROY_SESSION:
-            // return state object currentUser: null
             return Object.assign({}, state, {
                 currentUser: null,
                 isLoggedIn:false

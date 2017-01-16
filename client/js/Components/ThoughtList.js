@@ -7,12 +7,9 @@ var ThoughtList = React.createClass({
     componentWillMount: function() {
         this.props.dispatch(actions.fetchThoughtsFromUser(this.props.currentUser));
     },
-//<li key={index} onDoubleClick={}>{thoughts.thought}</li>    
     render: function() {
-        var currentUser=this.props.currentUser;
-        //Thoughts don't immediately appear as I add them
+        var currentUser = this.props.currentUser;
         var ThoughtItems = this.props.userThoughts.map(function(thought, index) {
-            console.log(thought._id);
                     return (<ThoughtItem thoughts={thought} key={thought._id} currentUser={currentUser}/>);
                 });
         return (

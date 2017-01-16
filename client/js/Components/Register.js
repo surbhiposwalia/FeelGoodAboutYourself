@@ -10,14 +10,11 @@ var Register= React.createClass({
     },
     addUser: function(){
 
-        var username= this.refs.username.value;
-        var password= this.refs.password.value;
-        var confirmPassword= this.refs.confirmPassword.value;
-        // if(password !== confirmPassword){
-        //     alert('password and confirm password is not same!!');
-        // }
+        let username = this.refs.username.value;
+        let password = this.refs.password.value;
+        let confirmPassword = this.refs.confirmPassword.value;
         if(password === confirmPassword){
-            this.props.dispatch(actions.registerUserAsync(username,password));
+            this.props.dispatch(actions.registerUserAsync(username, password));
             this.context.router.push('/');
         }
         else {

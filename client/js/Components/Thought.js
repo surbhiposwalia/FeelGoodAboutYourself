@@ -40,7 +40,6 @@ var Thought = React.createClass({
         this.props.dispatch(actions.changeFeedback(''));
     },
     changeRating:function(rating){
-        console.log(this.props.currentThought);
         this.props.dispatch(actions.updateThought(this.props.currentThought._id, this.props.currentThought.thought,this.props.currentThought.from, rating));
         this.props.dispatch(actions.fetchThoughtById(this.props.currentThought._id));
       
@@ -127,3 +126,4 @@ let mapStateToProps= function(state, props){
 export default connect(mapStateToProps)(Thought);
 
 
+ 

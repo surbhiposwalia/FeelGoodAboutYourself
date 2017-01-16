@@ -94,15 +94,15 @@ thoughtsRouter.post('/', function(req, res) {
         username: from
     }, function(err, user) {
         if (err) return errorHandler(err);
-        console.log(user);
         var newThought = new Thought({
             thought: thought,
             from: user._id,
             stars: stars
         })
-        newThought.save(function(err, thought) {
+        newThought.save({new:true},function(err, thought) {
             if (err) return errorHandler(res);
-            return res.status(201).json({});
+            console.log('thought'+thought);
+            return res.status(201).json(thought);
         });
     });
 });
@@ -112,7 +112,7 @@ thoughtsRouter.put('/:thoughtId', function(req, res) {
     let thought = req.body.thought;
     let from = req.body.from;
     let thoughtId = req.params.thoughtId;
-    let stars=req.body.stars;
+    let stars = req.body.stars;
     
     
     if (!req.body) {

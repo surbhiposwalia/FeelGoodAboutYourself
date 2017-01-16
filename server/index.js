@@ -4,26 +4,20 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import User from './models/user';
 import Thought from './models/thought';
-// import jsonParser from 'bodyParser';
-var jsonParser = bodyParser.json();
 import bcrypt from 'bcryptjs';
-mongoose.Promise= global.Promise;
-
 import usersRouter from './usersRouter';
 import thoughtsRouter from './thoughtsRouter';
 
-
+mongoose.Promise= global.Promise;
+const jsonParser = bodyParser.json();
 const HOST = process.env.HOST;
 const PORT = process.env.PORT || 8080;
-
 console.log(`Server running in ${process.env.NODE_ENV} mode`);
-
 const app = express();
 exports.app = app;
 
 app.use(express.static(process.env.CLIENT_PATH));
 app.use(jsonParser);
-
 app.use('/users', usersRouter);
 app.use('/thoughts', thoughtsRouter);
 

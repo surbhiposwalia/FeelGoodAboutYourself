@@ -26,7 +26,6 @@ var ThoughtItem = React.createClass({
     
     render:function(props){
     return   (<p>
-                
                     <i onClick={this.deleteThought} className="fa fa-trash trash" aria-hidden="true"></i>
                 <li 
                     onDoubleClick={this.edit}>{this.props.thoughts.thought}
@@ -41,9 +40,8 @@ var ThoughtItem = React.createClass({
 let mapStateToProps= function(state, props){
     return{
             editable:state.editable,
-            stars:state.stars,
-            
+            stars:state.stars
     };
 };
-var Container= connect(mapStateToProps)(ThoughtItem)
+var Container = connect(mapStateToProps)(ThoughtItem)
 export default Container;

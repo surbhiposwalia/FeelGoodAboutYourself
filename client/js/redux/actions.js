@@ -44,6 +44,7 @@ var updateThought= function(thoughtId, newThought, currentUser,stars){
     return function(dispatch) {
         // make PUT request to Api
         var endpoint = '/thoughts/'+thoughtId;
+        console.log('in update thought'+thoughtId, newThought, currentUser,stars )
         fetch(endpoint, {
             method:'put',
             headers: {
@@ -257,11 +258,11 @@ function fetchThoughtsFromUser(currUser) {
 
 
 var ADD_THOUGHT_SUCCESS = 'ADD_THOUGHT_SUCCESS';
-var addThoughtSuccess = function(thought,stars){
+var addThoughtSuccess = function(thought){
     return {
         type: ADD_THOUGHT_SUCCESS,
         payload: thought,
-        stars: stars
+        stars: thought.stars
     };
 };
 
@@ -300,7 +301,7 @@ var addThoughtAsync = function(thought, currentUser){
             .then(response => {
                 //if success, dispatch addThoughtSuccess(response);
                 console.log(response);
-                dispatch(addThoughtSuccess(thought));
+                dispatch(addThoughtSuccess(response));
             })
         .catch(err => {
             //if fail, dispatch addThoughtFail(error);
