@@ -13,8 +13,9 @@ import routes from './routes';
 import actions from '../redux/actions';
 import {connect} from 'react-redux';
 import StarRater from './StarRater';
+import {Provider} from 'react-redux';
   
-var Thought = React.createClass({
+const Thought = React.createClass({
     componentWillMount:function(){
         if(!this.props.currentUser){
             this.props.dispatch(actions.fetchThoughts());

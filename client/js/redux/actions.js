@@ -39,6 +39,101 @@ const editable=function(key){
     }
 }
 
+const FETCH_THOUGHTS_SUCCESS_FROM_USER = 'FETCH_THOUGHTS_SUCCESS_FROM_USER';
+function fetchThoughtsSuccessFromUser(thoughts) {
+    return {
+        type: FETCH_THOUGHTS_SUCCESS_FROM_USER,
+        payload: thoughts
+    };
+}
+
+const FETCH_THOUGHTS_ERROR_FROM_USER = 'FETCH_THOUGHTS_ERROR_FROM_USER';
+function fetchThoughtsErrorFromUser(error) {
+    return {
+        type: FETCH_THOUGHTS_ERROR_FROM_USER,
+        error: error
+    };
+}
+
+const FETCH_THOUGHTS_SUCCESS = 'FETCH_THOUGHTS_SUCCESS';
+function fetchThoughtsSuccess(thoughts) {
+    return {
+        type: FETCH_THOUGHTS_SUCCESS,
+        payload: thoughts
+    };
+}
+
+const FETCH_THOUGHTS_ERROR = 'FETCH_THOUGHTS_ERROR';
+function fetchThoughtsError(error) {
+    return {
+        type: FETCH_THOUGHTS_ERROR,
+        error: error
+    };
+}
+const FETCH_THOUGHT_SUCCESS = 'FETCH_THOUGHT_SUCCESS';
+function fetchThoughtSuccess(thought) {
+    return {
+        type: FETCH_THOUGHT_SUCCESS,
+        payload: thought
+    };
+}
+
+const FETCH_THOUGHT_ERROR = 'FETCH_THOUGHT_ERROR';
+function fetchThoughtError(error) {
+    return {
+        type: FETCH_THOUGHT_ERROR,
+        error: error
+    };
+}
+
+const ADD_THOUGHT_SUCCESS = 'ADD_THOUGHT_SUCCESS';
+const addThoughtSuccess = function(thought){
+    return {
+        type: ADD_THOUGHT_SUCCESS,
+        payload: thought,
+        stars: thought.stars
+    };
+};
+
+const ADD_THOUGHT_ERROR = 'ADD_THOUGHT_ERROR';
+const addThoughtError = function(error){
+    return {
+        type: ADD_THOUGHT_ERROR,
+        error: error
+    };
+};
+
+const CREATE_SESSION_SUCCESS = 'CREATE_SESSION_SUCCESS';
+const createSessionSuccess = function(username) {
+    return {
+        type: CREATE_SESSION_SUCCESS,
+        payload: username
+    };
+};
+
+
+const CREATE_SESSION_ERROR = 'CREATE_SESSION_ERROR';
+const createSessionError = function(error) {
+    return {
+        type: CREATE_SESSION_ERROR,
+        error: error
+    };
+};
+
+const REGISTER_USER_SUCCESS= 'REGISTER_USER_SUCCESS';
+const registerUserSuccess= function(){
+    return{
+        type:REGISTER_USER_SUCCESS
+    }
+}
+
+const REGISTER_USER_ERROR= 'REGISTER_USER_ERROR';
+const registerUserError= function(err){
+    return{
+        type:REGISTER_USER_ERROR,
+        error:err
+    }
+}
 
 const updateThought= function(thoughtId, newThought, currentUser,stars){
     return function(dispatch) {
@@ -116,36 +211,7 @@ function fetchThoughts() {
     };
 }
 
-const FETCH_THOUGHTS_SUCCESS = 'FETCH_THOUGHTS_SUCCESS';
-function fetchThoughtsSuccess(thoughts) {
-    return {
-        type: FETCH_THOUGHTS_SUCCESS,
-        payload: thoughts
-    };
-}
 
-const FETCH_THOUGHTS_ERROR = 'FETCH_THOUGHTS_ERROR';
-function fetchThoughtsError(error) {
-    return {
-        type: FETCH_THOUGHTS_ERROR,
-        error: error
-    };
-}
-const FETCH_THOUGHT_SUCCESS = 'FETCH_THOUGHT_SUCCESS';
-function fetchThoughtSuccess(thought) {
-    return {
-        type: FETCH_THOUGHT_SUCCESS,
-        payload: thought
-    };
-}
-
-const FETCH_THOUGHT_ERROR = 'FETCH_THOUGHT_ERROR';
-function fetchThoughtError(error) {
-    return {
-        type: FETCH_THOUGHT_ERROR,
-        error: error
-    };
-}
 
 function fetchThoughtById(thoughtId) {
     return function(dispatch) {
@@ -190,22 +256,6 @@ function fetchThoughts() {
 }
 
 
-const FETCH_THOUGHTS_SUCCESS_FROM_USER = 'FETCH_THOUGHTS_SUCCESS_FROM_USER';
-function fetchThoughtsSuccessFromUser(thoughts) {
-    return {
-        type: FETCH_THOUGHTS_SUCCESS_FROM_USER,
-        payload: thoughts
-    };
-}
-
-const FETCH_THOUGHTS_ERROR_FROM_USER = 'FETCH_THOUGHTS_ERROR_FROM_USER';
-function fetchThoughtsErrorFromUser(error) {
-    return {
-        type: FETCH_THOUGHTS_ERROR_FROM_USER,
-        error: error
-    };
-}
-
 function fetchThoughtsFromUser(currUser) {
     return function(dispatch) {
         const endpoint = '/thoughts/' + currUser;
@@ -226,23 +276,6 @@ function fetchThoughtsFromUser(currUser) {
         });
     };
 }
-
-const ADD_THOUGHT_SUCCESS = 'ADD_THOUGHT_SUCCESS';
-const addThoughtSuccess = function(thought){
-    return {
-        type: ADD_THOUGHT_SUCCESS,
-        payload: thought,
-        stars: thought.stars
-    };
-};
-
-const ADD_THOUGHT_ERROR = 'ADD_THOUGHT_ERROR';
-const addThoughtError = function(error){
-    return {
-        type: ADD_THOUGHT_ERROR,
-        error: error
-    };
-};
 
 const addThoughtAsync = function(thought, currentUser){
     return function(dispatch) {
@@ -275,23 +308,6 @@ const addThoughtAsync = function(thought, currentUser){
     };
 };
 
-
-const CREATE_SESSION_SUCCESS = 'CREATE_SESSION_SUCCESS';
-const createSessionSuccess = function(username) {
-    return {
-        type: CREATE_SESSION_SUCCESS,
-        payload: username
-    };
-};
-
-
-const CREATE_SESSION_ERROR = 'CREATE_SESSION_ERROR';
-const createSessionError = function(error) {
-    return {
-        type: CREATE_SESSION_ERROR,
-        error: error
-    };
-};
 const registerUserAsync = function(username, password) {
     return function(dispatch) {
         const endpoint = '/users';
@@ -323,21 +339,6 @@ const registerUserAsync = function(username, password) {
         });
     };
 };
-
-const REGISTER_USER_SUCCESS= 'REGISTER_USER_SUCCESS';
-const registerUserSuccess= function(){
-    return{
-        type:REGISTER_USER_SUCCESS
-    }
-}
-
-const REGISTER_USER_ERROR= 'REGISTER_USER_ERROR';
-const registerUserError= function(err){
-    return{
-        type:REGISTER_USER_ERROR,
-        error:err
-    }
-}
 
 const createSessionAsync = function(username, password, login) {
     return function(dispatch) {

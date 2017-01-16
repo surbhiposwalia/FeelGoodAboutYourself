@@ -12,7 +12,6 @@ mongoose.Promise= global.Promise;
 const jsonParser = bodyParser.json();
 const HOST = process.env.HOST;
 const PORT = process.env.PORT || 8080;
-console.log(`Server running in ${process.env.NODE_ENV} mode`);
 const app = express();
 exports.app = app;
 
@@ -41,15 +40,15 @@ function seedData() {
     });
 }
 
-var runServer = function(callback) {
-    var databaseUri = process.env.DATABASE_URI || global.databaseUri || 'mongodb://localhost/FeelsGood6';
+const runServer = function(callback) {
+    const databaseUri = process.env.DATABASE_URI || global.databaseUri || 'mongodb://localhost/FeelsGood6';
     mongoose
         .connect(databaseUri)
         .then(function() {
             console.log('db connected...');
             seedData();
-            var port = process.env.PORT || 8080;
-            var server = app.listen(port, function() {
+            const port = process.env.PORT || 8080;
+            const server = app.listen(port, function() {
                 console.log('Listening on localhost:' + port);
                 if (callback) {
                     callback(server);

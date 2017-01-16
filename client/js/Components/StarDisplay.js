@@ -1,20 +1,20 @@
-var React= require('react');
+import React from 'react';
 
-var StarDisplay = React.createClass({
+const StarDisplay = React.createClass({
     render: function(){
-        var stars =[];
-        for (var i=0; i<5; i++){
-            
-            var className;
+        let stars = [];
+        for (let i=0; i<5; i++){
+            let className;
             if(i < this.props.stars || 0){
                 className = 'fa fa-heart';
             }
             else {
-                className='fa fa-heart-o';
+                className ='fa fa-heart-o';
             }
-            var star=(
+            const star = (
                 <i className={className} key={i}>
-                </i>);
+                </i>
+                );
                 stars.push(star);
         }
         return(<span className="star-rater">{stars}</span>);
@@ -22,4 +22,4 @@ var StarDisplay = React.createClass({
 
 });
 
-module.exports = StarDisplay;
+ export default StarDisplay;

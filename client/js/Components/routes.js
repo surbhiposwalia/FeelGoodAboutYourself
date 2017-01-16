@@ -1,15 +1,13 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var router = require('react-router');
-var Router = router.Router;
-var Route = router.Route;
-var hashHistory = router.hashHistory;
+import React from 'react';
+import ReactDOM from 'react-dom';
+import router from 'react-router';
+import {Router, Route, hashHistory, IndexRoute} from 'react-router';
 import LogIn from './LogIn';
 import Register from './Register';
 import AddThought from './addThought';
 import Thought from './Thought';
 
-var routes = (
+const routes = (
     <Router history={hashHistory} >
         <Route path="/" component={Thought} />
         <Route path="/logIn" component= {LogIn} />
