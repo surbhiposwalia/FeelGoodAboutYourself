@@ -11,11 +11,7 @@ import {Router, Route, hashHistory, IndexRoute} from 'react-router';
 import {connect} from 'react-redux';
 
 const LogIn= React.createClass({
-    
-    componentDidMount:function(){
-        // this.props.dispatch(actions.changeFeedback(''));
-    },
-    
+
     addUser: function(event){
         event.preventDefault();
         var username = this.refs.username.value;
@@ -33,7 +29,6 @@ const LogIn= React.createClass({
     }, 
     
     render: function(){
-        console.log(this.props.feedback);
         return (
             <div>
                 <nav>

@@ -47,9 +47,7 @@ var runServer = function(callback) {
         .connect(databaseUri)
         .then(function() {
             console.log('db connected...');
-            
             seedData();
-            
             var port = process.env.PORT || 8080;
             var server = app.listen(port, function() {
                 console.log('Listening on localhost:' + port);

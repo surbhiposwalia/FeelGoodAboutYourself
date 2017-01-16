@@ -19,7 +19,6 @@ thoughtsRouter.get('/thought/:thoughtId', function(req, res) {
         _id: req.params.thoughtId
     }, function(err, thought) {
         if (err) return errorHandler(err);
-        console.log('inside get thought',thought);
             return res.json(thought);
         });
     
@@ -30,7 +29,6 @@ thoughtsRouter.get('/:from', function(req, res) {
         username: req.params.from
     }, function(err, user) {
         if (err) return errorHandler(err);
-        console.log(user);
         Thought.find({
             from: user._id
         }, function(err, thoughts) {
@@ -101,14 +99,12 @@ thoughtsRouter.post('/', function(req, res) {
         })
         newThought.save({new:true},function(err, thought) {
             if (err) return errorHandler(res);
-            console.log('thought'+thought);
             return res.status(201).json(thought);
         });
     });
 });
 
 thoughtsRouter.put('/:thoughtId', function(req, res) {
-    console.log('inside put thought');
     let thought = req.body.thought;
     let from = req.body.from;
     let thoughtId = req.params.thoughtId;

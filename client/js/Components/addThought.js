@@ -10,7 +10,6 @@ var AddThought = React.createClass({
     addThought: function(event){
         event.preventDefault();
         const thought = this.refs.newThought.value;
-        //dispatch action
         this.props.dispatch(actions.addThoughtAsync(thought, this.props.currentUser));
         this.refs.newThought.value='';
         this.context.router.push('/addThought');
