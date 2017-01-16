@@ -6,7 +6,7 @@ import {Link} from 'react-router';
 import Error from './Error';
 import ThoughtList from './ThoughtList';
 
-var AddThought = React.createClass({
+const AddThought = React.createClass({
     addThought: function(event){
         event.preventDefault();
         const thought = this.refs.newThought.value;

@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import actions from '../redux/actions';
 
-var Register= React.createClass({
+const Register= React.createClass({
     componentDidMount:function(){
       this.props.dispatch(actions.changeFeedback(''));  
     },

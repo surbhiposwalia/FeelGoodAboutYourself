@@ -1,13 +1,11 @@
 //store
-var redux = require('redux');
-var createStore = redux.createStore;
-var applyMiddleware = redux.applyMiddleware;
-var thunk = require('redux-thunk').default;
-var thoughtReducer = require('./reducers').thoughtReducer;
+import redux from 'redux';
+import {createStore, applyMiddleware} from 'redux';
+import thunk from 'redux-thunk';
+import {thoughtReducer} from './reducers';
+import actions from './actions';
 
-var actions = require('./actions');
-
-var store = createStore(thoughtReducer, applyMiddleware(thunk));
+const store = createStore(thoughtReducer, applyMiddleware(thunk));
 
 
 module.exports = store;

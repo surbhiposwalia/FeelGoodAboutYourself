@@ -14,12 +14,11 @@ const LogIn= React.createClass({
 
     addUser: function(event){
         event.preventDefault();
-        var username = this.refs.username.value;
-        var password = this.refs.password.value;
-        this.props.dispatch(actions.createSessionAsync(username, password,this));
+        let username = this.refs.username.value;
+        let password = this.refs.password.value;
+        this.props.dispatch(actions.createSessionAsync(username, password, this));
         this.refs.username.value = '';
         this.refs.password.value = '';
-        
     },
 
     transitionToHome:function(){

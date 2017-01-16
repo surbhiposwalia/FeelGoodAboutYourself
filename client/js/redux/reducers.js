@@ -1,5 +1,6 @@
-var actions = require('./actions');
-var initialState = {
+import actions from './actions';
+
+const initialState = {
     isLoggedIn: false, 
     thoughts: [],
     currentUser: "",
@@ -34,7 +35,7 @@ const thoughtReducer = function(state = initialState, action) {
             
         case actions.ADD_THOUGHT_SUCCESS:
             console.log(action.payload);
-            var newThoughts = state.thoughts.concat(action.payload);
+            let newThoughts = state.thoughts.concat(action.payload);
             
             return Object.assign({}, state, {
                 thoughts: newThoughts,

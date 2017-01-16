@@ -1,6 +1,6 @@
-var fetch = require('isomorphic-fetch');
+const fetch = require('isomorphic-fetch');
 
-var SELECT_THOUGHT = 'SELECT_THOUGHT';
+const SELECT_THOUGHT = 'SELECT_THOUGHT';
 function selectThought(thought) {
     return {
         type: SELECT_THOUGHT,
@@ -8,31 +8,31 @@ function selectThought(thought) {
     };
 }
 
-var CHANGE_FEEDBACK= 'CHANGE_FEEDBACK';
-var changeFeedback= function(feedback){
+const CHANGE_FEEDBACK= 'CHANGE_FEEDBACK';
+const changeFeedback= function(feedback){
     return {
         type:CHANGE_FEEDBACK,
         payload:feedback
     }
 }
 
-var EDIT_THOUGHT_SUCCESS='EDIT_THOUGHT_SUCCESS';
-var editThoughtSucess=function(){
+const EDIT_THOUGHT_SUCCESS='EDIT_THOUGHT_SUCCESS';
+const editThoughtSucess=function(){
     return{
         type:EDIT_THOUGHT_SUCCESS
     }
 }
 
-var EDIT_THOUGHT_ERROR='EDIT_THOUGHT_ERROR';
-var editThoughtError=function(error){
+const EDIT_THOUGHT_ERROR='EDIT_THOUGHT_ERROR';
+const editThoughtError=function(error){
     return{
         type:EDIT_THOUGHT_ERROR,
         error:error
     }
 }
 
-var EDITABLE= 'EDITABLE';
-var editable=function(key){
+const EDITABLE= 'EDITABLE';
+const editable=function(key){
     return{
         type:EDITABLE,
         key:key
@@ -40,11 +40,9 @@ var editable=function(key){
 }
 
 
-var updateThought= function(thoughtId, newThought, currentUser,stars){
+const updateThought= function(thoughtId, newThought, currentUser,stars){
     return function(dispatch) {
-        // make PUT request to Api
-        var endpoint = '/thoughts/'+thoughtId;
-        console.log('in update thought'+thoughtId, newThought, currentUser,stars )
+        const endpoint = '/thoughts/'+thoughtId;
         fetch(endpoint, {
             method:'put',
             headers: {
@@ -57,30 +55,24 @@ var updateThought= function(thoughtId, newThought, currentUser,stars){
                 stars:stars
         })})
             .then(function(res) {
-                if(res.status < 200 || res.status >= 300) {
-                    //bad response :(
-                    var error = new Error(res.statusText);
+                if(res.status < 200 || res.status >= 300){
+                    const error = new Error(res.statusText);
                     error.res = res;
                     throw error;
                 }
                 return res.json();
             })
             .then(response => {
-                //if success, dispatch 
-                console.log(response);
                 dispatch(editThoughtSucess());
             })
         .catch(err => {
-            //if fail, dispatch 
-            console.log(err);
             dispatch(editThoughtError(err));
         });
     };}
     
-var deleteThought= function(thoughtId){
+const deleteThought= function(thoughtId){
     return function(dispatch) {
-        // make PUT request to Api
-        var endpoint = '/thoughts/'+thoughtId;
+        const endpoint = '/thoughts/'+thoughtId;
         fetch(endpoint, {
             method:'delete',
             headers: {
@@ -89,33 +81,27 @@ var deleteThought= function(thoughtId){
             }})
             .then(function(res) {
                 if(res.status < 200 || res.status >= 300) {
-                    //bad response :(
-                    var error = new Error(res.statusText);
+                    const error = new Error(res.statusText);
                     error.res = res;
                     throw error;
                 }
                 return res.json();
             })
             .then(response => {
-                //if success, dispatch 
-                console.log(response);
                 dispatch(editThoughtSucess());
             })
         .catch(err => {
-            //if fail, dispatch 
-            console.log(err);
             dispatch(editThoughtError(err));
         });
     };}
 
 function fetchThoughts() {
     return function(dispatch) {
-        var endpoint = '/thoughts';
+        const endpoint = '/thoughts';
         return fetch(endpoint)
             .then(function(res) {
                 if(res.status < 200 || res.status >= 300) {
-                    //bad response :(
-                    var error = new Error(res.statusText);
+                    const error = new Error(res.statusText);
                     error.res = res;
                     throw error;
                 }
@@ -130,8 +116,7 @@ function fetchThoughts() {
     };
 }
 
-//actions to fetch thoughts (sync)
-var FETCH_THOUGHTS_SUCCESS = 'FETCH_THOUGHTS_SUCCESS';
+const FETCH_THOUGHTS_SUCCESS = 'FETCH_THOUGHTS_SUCCESS';
 function fetchThoughtsSuccess(thoughts) {
     return {
         type: FETCH_THOUGHTS_SUCCESS,
@@ -139,23 +124,22 @@ function fetchThoughtsSuccess(thoughts) {
     };
 }
 
-var FETCH_THOUGHTS_ERROR = 'FETCH_THOUGHTS_ERROR';
+const FETCH_THOUGHTS_ERROR = 'FETCH_THOUGHTS_ERROR';
 function fetchThoughtsError(error) {
     return {
         type: FETCH_THOUGHTS_ERROR,
         error: error
     };
 }
-var FETCH_THOUGHT_SUCCESS = 'FETCH_THOUGHT_SUCCESS';
+const FETCH_THOUGHT_SUCCESS = 'FETCH_THOUGHT_SUCCESS';
 function fetchThoughtSuccess(thought) {
-    console.log('inside action',thought);
     return {
         type: FETCH_THOUGHT_SUCCESS,
         payload: thought
     };
 }
 
-var FETCH_THOUGHT_ERROR = 'FETCH_THOUGHT_ERROR';
+const FETCH_THOUGHT_ERROR = 'FETCH_THOUGHT_ERROR';
 function fetchThoughtError(error) {
     return {
         type: FETCH_THOUGHT_ERROR,
@@ -165,12 +149,11 @@ function fetchThoughtError(error) {
 
 function fetchThoughtById(thoughtId) {
     return function(dispatch) {
-        var endpoint = '/thoughts/thought/'+thoughtId;
+        const endpoint = '/thoughts/thought/'+thoughtId;
         return fetch(endpoint)
             .then(function(res) {
                 if(res.status < 200 || res.status >= 300) {
-                    //bad response :(
-                    var error = new Error(res.statusText);
+                    const error = new Error(res.statusText);
                     error.res = res;
                     throw error;
                 }
@@ -185,15 +168,13 @@ function fetchThoughtById(thoughtId) {
     };
 }
 
-//action to fetch thought endpoint for API (async)
 function fetchThoughts() {
     return function(dispatch) {
-        var endpoint = '/thoughts';
+        const endpoint = '/thoughts';
         return fetch(endpoint)
             .then(function(res) {
                 if(res.status < 200 || res.status >= 300) {
-                    //bad response :(
-                    var error = new Error(res.statusText);
+                    const error = new Error(res.statusText);
                     error.res = res;
                     throw error;
                 }
@@ -209,11 +190,7 @@ function fetchThoughts() {
 }
 
 
-
-
-
-//actions to fetch thoughts (sync)
-var FETCH_THOUGHTS_SUCCESS_FROM_USER = 'FETCH_THOUGHTS_SUCCESS_FROM_USER';
+const FETCH_THOUGHTS_SUCCESS_FROM_USER = 'FETCH_THOUGHTS_SUCCESS_FROM_USER';
 function fetchThoughtsSuccessFromUser(thoughts) {
     return {
         type: FETCH_THOUGHTS_SUCCESS_FROM_USER,
@@ -221,7 +198,7 @@ function fetchThoughtsSuccessFromUser(thoughts) {
     };
 }
 
-var FETCH_THOUGHTS_ERROR_FROM_USER = 'FETCH_THOUGHTS_ERROR_FROM_USER';
+const FETCH_THOUGHTS_ERROR_FROM_USER = 'FETCH_THOUGHTS_ERROR_FROM_USER';
 function fetchThoughtsErrorFromUser(error) {
     return {
         type: FETCH_THOUGHTS_ERROR_FROM_USER,
@@ -229,22 +206,19 @@ function fetchThoughtsErrorFromUser(error) {
     };
 }
 
-//action to fetch thought endpoint for API (async)
 function fetchThoughtsFromUser(currUser) {
     return function(dispatch) {
-        var endpoint = '/thoughts/' + currUser;
+        const endpoint = '/thoughts/' + currUser;
         return fetch(endpoint)
             .then(function(res) {
                 if(res.status < 200 || res.status >= 300) {
-                    //bad response :(
-                    var error = new Error(res.statusText);
+                    const error = new Error(res.statusText);
                     error.res = res;
                     throw error;
                 }
                 return res.json();
             })
             .then(function(data) {
-                console.log(data);
                 dispatch(fetchThoughtsSuccessFromUser(data));
             })
         .catch(function(error) {
@@ -253,12 +227,8 @@ function fetchThoughtsFromUser(currUser) {
     };
 }
 
-
-
-
-
-var ADD_THOUGHT_SUCCESS = 'ADD_THOUGHT_SUCCESS';
-var addThoughtSuccess = function(thought){
+const ADD_THOUGHT_SUCCESS = 'ADD_THOUGHT_SUCCESS';
+const addThoughtSuccess = function(thought){
     return {
         type: ADD_THOUGHT_SUCCESS,
         payload: thought,
@@ -266,18 +236,17 @@ var addThoughtSuccess = function(thought){
     };
 };
 
-var ADD_THOUGHT_ERROR = 'ADD_THOUGHT_ERROR';
-var addThoughtError = function(error){
+const ADD_THOUGHT_ERROR = 'ADD_THOUGHT_ERROR';
+const addThoughtError = function(error){
     return {
         type: ADD_THOUGHT_ERROR,
         error: error
     };
 };
 
-var addThoughtAsync = function(thought, currentUser){
+const addThoughtAsync = function(thought, currentUser){
     return function(dispatch) {
-        // make POST request to Api
-        var endpoint = '/thoughts';
+        const endpoint = '/thoughts';
         fetch(endpoint, {
             method:'post',
             headers: {
@@ -291,49 +260,43 @@ var addThoughtAsync = function(thought, currentUser){
         })})
             .then(function(res) {
                 if(res.status < 200 || res.status >= 300) {
-                    //bad response :(
-                    var error = new Error(res.statusText);
+                    const error = new Error(res.statusText);
                     error.res = res;
                     throw error;
                 }
                 return res.json();
             })
             .then(response => {
-                //if success, dispatch addThoughtSuccess(response);
-                console.log(response);
                 dispatch(addThoughtSuccess(response));
             })
         .catch(err => {
-            //if fail, dispatch addThoughtFail(error);
-            console.log(err);
             dispatch(addThoughtError(err));
         });
     };
 };
 
-//CREATE_SESSION_SUCCESS
-var CREATE_SESSION_SUCCESS = 'CREATE_SESSION_SUCCESS';
-var createSessionSuccess = function(username) {
+
+const CREATE_SESSION_SUCCESS = 'CREATE_SESSION_SUCCESS';
+const createSessionSuccess = function(username) {
     return {
         type: CREATE_SESSION_SUCCESS,
         payload: username
     };
 };
 
-//CREATE_SESSION_ERROR
-var CREATE_SESSION_ERROR = 'CREATE_SESSION_ERROR';
-var createSessionError = function(error) {
+
+const CREATE_SESSION_ERROR = 'CREATE_SESSION_ERROR';
+const createSessionError = function(error) {
     return {
         type: CREATE_SESSION_ERROR,
         error: error
     };
 };
-var registerUserAsync = function(username, password) {
+const registerUserAsync = function(username, password) {
     return function(dispatch) {
-        var endpoint = '/users';
+        const endpoint = '/users';
         fetch(endpoint, {
             method:'post',
-            //var headers = new headers
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -344,50 +307,43 @@ var registerUserAsync = function(username, password) {
         })})
             .then(function(res) {
                 if(res.status < 200 || res.status >= 300) {
-                    //bad response :(
-                    var error = new Error(res.statusText);
+                    const error = new Error(res.statusText);
                     error.res = res;
                     throw error;
                 }
                 res = res.json();
             })
             .then(response => {
-                //if success, dispatch addThoughtSuccess(response);
                 return dispatch(registerUserSuccess());
             })
             
         .catch(err => {
-            //if fail, dispatch addThoughtFail(error);
             console.log(err);
             return dispatch(registerUserError(err));
         });
     };
 };
 
-var REGISTER_USER_SUCCESS= 'REGISTER_USER_SUCCESS';
-var registerUserSuccess= function(){
+const REGISTER_USER_SUCCESS= 'REGISTER_USER_SUCCESS';
+const registerUserSuccess= function(){
     return{
         type:REGISTER_USER_SUCCESS
     }
 }
 
-var REGISTER_USER_ERROR= 'REGISTER_USER_ERROR';
-var registerUserError= function(err){
+const REGISTER_USER_ERROR= 'REGISTER_USER_ERROR';
+const registerUserError= function(err){
     return{
         type:REGISTER_USER_ERROR,
         error:err
     }
 }
 
-
-
-//createSessionAsync (log in user)
-var createSessionAsync = function(username, password, login) {
+const createSessionAsync = function(username, password, login) {
     return function(dispatch) {
-        var endpoint = '/users/login';
+        const endpoint = '/users/login';
         return fetch(endpoint, {
             method:'post',
-            //var headers = new headers
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -398,30 +354,25 @@ var createSessionAsync = function(username, password, login) {
         })})
             .then(function(res) {
                 if(res.status < 200 || res.status >= 300) {
-                    //bad response :(
-                    var error = new Error(res.statusText);
+                    const error = new Error(res.statusText);
                     error.res = res;
                     throw error;
                 }
                 res = res.json();
             })
             .then(response => {
-                //if success, dispatch addThoughtSuccess(response);
                 return dispatch(createSessionSuccess(username));
             }).then(function(){
                 login.transitionToHome();
             })
         .catch(err => {
-            //if fail, dispatch addThoughtFail(error);
-            console.log(err);
             return dispatch(createSessionError(err));
         });
     };
 };
 
-//DESTROY_SESSION
-var DESTROY_SESSION = 'DESTROY_SESSION';
-var destroySession = function() {
+const DESTROY_SESSION = 'DESTROY_SESSION';
+const destroySession = function() {
     return {
         type: DESTROY_SESSION,
     };
