@@ -11,6 +11,11 @@ body {
     background-color: #8DCDC1;
 }
 
+input {
+    font-size: 15px;
+    border-radius: 5px;
+}
+
 #top-left {
     width: 250px;
     height: 500px;
@@ -122,17 +127,11 @@ li {
     position: fixed; /* or absolute */
     top: 25%;
     left: 50%;
-    /* bring your own prefixes */
     transform: translate(-50%, -50%);
 }
 
 .login-user {
     padding: 10px;
-}
-
-.inputs {
-    width: 120px;
-    border-radius: 5px;
 }
 
 #thought-box {
@@ -148,9 +147,9 @@ li {
     color: black;
     border: 2px solid #008CBA;
     background-color: #C2F0FF;
-    font-size: 14px;
-    width: 50px;
-    height: 35px;
+    padding: 7px;
+   font-size: 18px;
+   border-radius: 7px;
 }
 
 .fancy-button:hover {

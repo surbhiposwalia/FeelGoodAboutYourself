@@ -41,9 +41,9 @@ const Thought = React.createClass({
         this.props.dispatch(actions.changeFeedback(''));
     },
     changeRating:function(rating){
-        this.props.dispatch(actions.updateThought(this.props.currentThought._id, this.props.currentThought.thought,this.props.currentThought.from, rating));
+        this.props.dispatch(actions.updateThought(this.props.currentThought._id, this.props.currentThought.thought, this.props.currentThought.from, rating));
         this.props.dispatch(actions.fetchThoughtById(this.props.currentThought._id));
-      
+      this.props.dispatch(actions.fetchThoughts());
     },
     
     render: function(){
@@ -68,7 +68,7 @@ const Thought = React.createClass({
                     </nav>
                     
                     <main>
-                        <h2>"{this.props.currentThought.thought}"</h2><br /><StarRater stars= {this.props.currentThought.stars} onChange = {this.changeRating} /><br />
+                        <h2>"{this.props.currentThought.thought}"</h2><br /><StarRater stars={this.props.currentThought.stars} onChange={this.changeRating} /><br />
                         <input className="the-button" type = 'button' value="Change the Thought" onClick={this.randomThought} />
                         <br />
                         <br />
@@ -97,7 +97,7 @@ const Thought = React.createClass({
                         <div className="welcome">Welcome, {this.props.currentUser}!</div>
                     </nav>
                     <main>
-                        <h2>"{this.props.currentThought.thought}"</h2><br /><StarRater stars= {this.props.stars} onChange = {this.changeRating} /><br />
+                        <h2>"{this.props.currentThought.thought}"</h2><br /><StarRater stars={this.props.currentThought.stars} onChange={this.changeRating} /><br />
                         <input className="the-button" type = 'button' value="Change the Thought" onClick={this.randomThought} />
                         <br />
                         <br />

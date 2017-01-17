@@ -36,7 +36,7 @@ const Register= React.createClass({
                         </Link>
                     </div>
                 </nav>
-                <div className="center">
+                <form className="center" onSubmit={this.addUser}>
                     <div className="login-user">
                         Username: <input type='text' ref='username' placeholder="Enter your username" />
                     </div>
@@ -50,7 +50,7 @@ const Register= React.createClass({
                         <input className="fancy-button" type='submit' value='Register' onClick={this.addUser} />
                     </center>
                     <Error error={this.props.feedback} />
-                </div>
+                </form>
             </div>
         );
     }

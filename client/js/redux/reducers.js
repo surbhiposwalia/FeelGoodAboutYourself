@@ -34,7 +34,6 @@ const thoughtReducer = function(state = initialState, action) {
             });
             
         case actions.ADD_THOUGHT_SUCCESS:
-            console.log(action.payload);
             let newThoughts = state.thoughts.concat(action.payload);
             
             return Object.assign({}, state, {

@@ -19,7 +19,6 @@ const StarDisplay = React.createClass({
         }
         return(<span className="star-rater">{stars}</span>);
     }
-
 });
 
  export default StarDisplay;

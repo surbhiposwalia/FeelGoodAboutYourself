@@ -107,7 +107,6 @@ usersRouter.post('/', jsonParser, function(req, res) {
     });
 });
 
-//extra credit --- to delete the user
 
 usersRouter.put('/:userId', jsonParser, function(req, res) {
     let username = req.body.username;

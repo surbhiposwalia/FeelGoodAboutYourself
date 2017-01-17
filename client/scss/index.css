@@ -1,0 +1,146 @@
+* {
+  font-family: 'Fira Sans', sans-serif;
+  line-height: 1.5; }
+
+.error {
+  color: #EB6E44; }
+
+body {
+  background-color: #8DCDC1; }
+
+input {
+  font-size: 15px;
+  border-radius: 5px; }
+
+#top-left {
+  width: 250px;
+  height: 500px;
+  background-color: #D3E397;
+  transform: rotate(45deg);
+  position: fixed;
+  z-index: -1;
+  top: -175px;
+  left: -50px; }
+
+#bottom-right {
+  width: 250px;
+  height: 500px;
+  background-color: #FFF5C3;
+  transform: rotate(45deg);
+  position: fixed;
+  z-index: -1;
+  bottom: -175px;
+  right: -50px; }
+
+nav {
+  border-bottom: 2px solid black;
+  border-top: 2px solid black;
+  position: relative; }
+
+.title {
+  padding-left: 60px;
+  position: relative;
+  top: 20px; }
+
+.nav-link {
+  position: absolute;
+  padding-right: 60px;
+  top: 50px;
+  right: 0; }
+
+.welcome {
+  padding-left: 60px; }
+
+main {
+  position: fixed;
+  /* or absolute */
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+  text-align: center; }
+
+h2 {
+  font-size: 50px; }
+
+a {
+  color: #0061ff;
+  text-decoration: none; }
+
+a:hover {
+  text-decoration: underline; }
+
+a:active {
+  color: #1200db; }
+
+.nav-link a::before {
+  content: "- "; }
+
+#no-dash::before {
+  content: ""; }
+
+li {
+  width: 80px;
+  height: 30px;
+  padding: 10px;
+  list-style: none;
+  margin: 10px; }
+
+.the-button {
+  background-color: #0061ff;
+  color: white;
+  border-radius: 8px;
+  border: 1px solid teal;
+  box-shadow: 0 9px #999;
+  cursor: pointer;
+  font-size: 12px; }
+
+.the-button:hover {
+  background-color: #008CBA; }
+
+.the-button:active {
+  background-color: #008CBA;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px); }
+
+.center {
+  position: fixed;
+  /* or absolute */
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%); }
+
+.login-user {
+  padding: 10px; }
+
+#thought-box {
+  height: 50px;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 5px; }
+
+.fancy-button {
+  -webkit-transition-duration: 0.4s;
+  /* Safari */
+  transition-duration: 0.4s;
+  color: black;
+  border: 2px solid #008CBA;
+  background-color: #C2F0FF;
+  padding: 7px;
+  font-size: 18px;
+  border-radius: 7px; }
+
+.fancy-button:hover {
+  background-color: #008CBA;
+  color: white;
+  cursor: pointer; }
+
+.trash:hover {
+  background-color: #008CBA;
+  color: white;
+  cursor: pointer; }
+
+.fa-heart {
+  color: red; }
+
+/*# sourceMappingURL=index.css.map */

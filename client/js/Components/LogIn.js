@@ -36,7 +36,7 @@ const LogIn= React.createClass({
                         <Link id="no-dash" to="/">Home</Link>
                     </div>
                 </nav>
-                <div className="center">
+                <form className="center" onSubmit={this.addUser}>
                     <div className="login-user">
                         Username: <input className="inputs" type='text' ref='username' placeholder="Enter your username" required />
                     </div>
@@ -47,7 +47,7 @@ const LogIn= React.createClass({
                         <input className="fancy-button" type='submit' value='Log In' onClick={this.addUser} />
                     </center>
                     <Error error={this.props.feedback} />
-                </div>
+                </form>
                   
             </div>
         );
