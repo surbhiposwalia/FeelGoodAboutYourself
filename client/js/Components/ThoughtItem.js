@@ -29,9 +29,10 @@ const ThoughtItem = React.createClass({
                     <i onClick={this.deleteThought} className="fa fa-trash trash" aria-hidden="true"></i>
                 <li 
                     onDoubleClick={this.edit}>{this.props.thoughts.thought}
+                    <br />
                     <StarDisplay  stars={this.props.thoughts.stars} />
+                {this.props.editable==this.props.thoughts._id ?<div><br /><input contentEditable onBlur={this.editThought} ref="input" /></div>:null }
                 </li>
-                {this.props.editable==this.props.thoughts._id ?<input contentEditable onBlur={this.editThought} ref="input" />:null }
             </p>
             );
     

@@ -16,6 +16,14 @@ input {
     border-radius: 5px;
 }
 
+form {
+    text-align:center;
+}
+
+h1 {
+    margin-left: 55px;
+}
+
 #top-left {
     width: 250px;
     height: 500px;
@@ -25,6 +33,14 @@ input {
     z-index: -1;
     top: -175px;
     left: -50px;
+}
+
+p{
+    display: -webkit-inline-box;
+    background-color: cornsilk;
+    padding: 8px;
+    margin: 15px;
+    border: 1px solid black;
 }
 
 #bottom-right {
@@ -45,7 +61,6 @@ nav {
 }
 
 .title {
-    padding-left: 60px;
     position: relative;
     top: 20px;
 }
@@ -53,7 +68,7 @@ nav {
 .nav-link {
     position: absolute;
     padding-right: 60px;
-    top: 50px;
+    top: 9px;
     right: 0;
 }
 
@@ -96,11 +111,11 @@ a:active {
 }
 
 li {
-    width: 80px;
-    height: 30px;
-    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin: 25px;
     list-style: none;
-    margin: 10px;
+    
 }
 
 .the-button {
@@ -135,7 +150,8 @@ li {
 }
 
 #thought-box {
-    height: 50px;
+    height: 24px;
+    width: 41%;
     font-size: 14px;
     padding: 10px;
     border-radius: 5px;
@@ -159,8 +175,7 @@ li {
 }
 
 .trash:hover{
-    background-color: #008CBA;
-    color: white;
+    color: #008CBA;
     cursor: pointer;
 }
 
