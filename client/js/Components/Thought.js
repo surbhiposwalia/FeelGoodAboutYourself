@@ -1,19 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import router from 'react-router';
-import {Router} from 'react-router';
-import {Route} from 'react-router';
-import {hashHistory} from 'react-router';
 import {Link} from 'react-router';
-import {IndexRoute} from 'react-router';
-import LogIn from './LogIn';
-import Register from './Register';
-import AddThought from './addThought';
-import routes from './routes';
 import actions from '../redux/actions';
 import {connect} from 'react-redux';
 import StarRater from './StarRater';
-import {Provider} from 'react-redux';
   
 const Thought = React.createClass({
     componentWillMount:function(){

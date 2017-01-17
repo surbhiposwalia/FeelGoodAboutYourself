@@ -1,13 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import actions from '../redux/actions';
-import routes from './routes';
-import { browserHistory } from 'react-router'
 import {Link} from 'react-router';
-import Thought from './Thought';
 import Error from './Error';
-import router from 'react-router';
-import {Router, Route, hashHistory, IndexRoute} from 'react-router';
 import {connect} from 'react-redux';
 
 const LogIn= React.createClass({

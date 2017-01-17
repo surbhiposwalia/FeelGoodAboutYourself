@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import actions from '../redux/actions';
 import {connect} from 'react-redux';
 import StarDisplay from './StarDisplay';

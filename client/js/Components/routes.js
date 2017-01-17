@@ -1,7 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import router from 'react-router';
-import {Router, Route, hashHistory, IndexRoute} from 'react-router';
+import {Router, Route, hashHistory} from 'react-router';
 import LogIn from './LogIn';
 import Register from './Register';
 import AddThought from './addThought';
