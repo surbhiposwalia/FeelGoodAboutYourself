@@ -38,13 +38,13 @@ const Register= React.createClass({
                 </nav>
                 <form className="center" onSubmit={this.addUser}>
                     <div className="login-user">
-                        Username: <input type='text' ref='username' placeholder="Enter your username" />
+                        Username: <input className="inputs" type='text' ref='username' placeholder="Enter your username" />
                     </div>
                     <div className="login-user">
-                        Password: <input type='password' ref='password' placeholder="Enter your password" />
+                        Password: <input type='password' className="inputs" ref='password' placeholder="Enter your password" />
                     </div>
                     <div className="login-user">
-                        Confirm Password: <input type='password' ref='confirmPassword' placeholder="Confirm your password" />
+                        Confirm Password: <input className="inputs" type='password' ref='confirmPassword' placeholder="Confirm your password" />
                     </div>
                     <center>
                         <input className="fancy-button" type='submit' value='Register' onClick={this.addUser} />

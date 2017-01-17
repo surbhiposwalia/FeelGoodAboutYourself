@@ -3,12 +3,17 @@
 	line-height: 1.5;
 }
 
-.error {
-    color: #EB6E44;
-}
 
 body {
     background-color: #8DCDC1;
+}
+
+main {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
 }
 
 input {
@@ -25,15 +30,10 @@ h1 {
     margin-left: 25px;
 }
 
-#top-left {
-    width: 250px;
-    height: 500px;
-    background-color: #D3E397;
-    transform: rotate(45deg);
-    position: fixed;
-    z-index: -1;
-    top: -175px;
-    left: -50px;
+nav {
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
+    position: relative;
 }
 
 p{
@@ -42,6 +42,32 @@ p{
     padding: 8px;
     margin: 15px;
     border: 1px solid black;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+li {
+    padding-left: 20px;
+    padding-right: 20px;
+    margin: 25px;
+    list-style: none;
+    
+}
+
+a {
+    color: #0061ff;
+    text-decoration: none;
+    font-size: larger;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:active {
+    color: #1200db;
 }
 
 #bottom-right {
@@ -55,15 +81,37 @@ p{
     right: -50px;
 }
 
-nav {
-    border-bottom: 2px solid black;
-    border-top: 2px solid black;
-    position: relative;
+#top-left {
+    width: 250px;
+    height: 500px;
+    background-color: #D3E397;
+    transform: rotate(45deg);
+    position: fixed;
+    z-index: -1;
+    top: -175px;
+    left: -50px;
+}
+
+#thought-box {
+    height: 24px;
+    width: 41%;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#no-dash::before {
+    content: "";
 }
 
 .title {
     position: relative;
     top: 20px;
+}
+
+.inputs {
+    width: 171px;
+    padding: 5px;  
 }
 
 .nav-link {
@@ -77,45 +125,8 @@ nav {
     padding-left: 25px;
 }
 
-main {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-}
-
-h2 {
-    font-size: 30px;
-}
-
-a {
-    color: #0061ff;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-a:active {
-    color: #1200db;
-}
-
 .nav-link a::before {
     content: "- ";
-}
-
-#no-dash::before {
-    content: "";
-}
-
-li {
-    padding-left: 20px;
-    padding-right: 20px;
-    margin: 25px;
-    list-style: none;
-    
 }
 
 .the-button {
@@ -143,18 +154,11 @@ li {
     top: 35%;
     left: 50%;
     transform: translate(-50%, -50%);
+    font-size: 21px;
 }
 
 .login-user {
     padding: 10px;
-}
-
-#thought-box {
-    height: 24px;
-    width: 41%;
-    font-size: 14px;
-    padding: 10px;
-    border-radius: 5px;
 }
 
 .fancy-button {
