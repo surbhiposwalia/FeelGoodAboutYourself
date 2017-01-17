@@ -22,7 +22,7 @@ const AddThought = React.createClass({
             <div>
                 <nav>
                     <h1 className="title">Add a New Thought</h1>
-                    <div className="welcome">adding thoughts from: {this.props.currentUser}</div>
+                    <div className="welcome">Adding thoughts from: {this.props.currentUser}</div>
                     <div className="nav-link">
                         <Link id="no-dash" to="/">
                             Home

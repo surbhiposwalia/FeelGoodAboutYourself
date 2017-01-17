@@ -1,5 +1,5 @@
 * {
-  font-family: 'Fira Sans', sans-serif;
+  font-family: 'Architects Daughter', cursive;
   line-height: 1.5; }
 
 .error {
@@ -10,13 +10,14 @@ body {
 
 input {
   font-size: 15px;
-  border-radius: 5px; }
+  border-radius: 5px;
+  margin: 15px; }
 
 form {
   text-align: center; }
 
 h1 {
-  margin-left: 55px; }
+  margin-left: 25px; }
 
 #top-left {
   width: 250px;
@@ -61,19 +62,17 @@ nav {
   right: 0; }
 
 .welcome {
-  padding-left: 60px; }
+  padding-left: 25px; }
 
 main {
   position: fixed;
-  /* or absolute */
   top: 50%;
   left: 50%;
-  /* bring your own prefixes */
   transform: translate(-50%, -50%);
   text-align: center; }
 
 h2 {
-  font-size: 50px; }
+  font-size: 30px; }
 
 a {
   color: #0061ff;
@@ -104,7 +103,7 @@ li {
   border: 1px solid teal;
   box-shadow: 0 9px #999;
   cursor: pointer;
-  font-size: 12px; }
+  font-size: 17px; }
 
 .the-button:hover {
   background-color: #008CBA; }
@@ -115,9 +114,9 @@ li {
   transform: translateY(4px); }
 
 .center {
-  position: fixed;
+  position: absolute;
   /* or absolute */
-  top: 25%;
+  top: 35%;
   left: 50%;
   transform: translate(-50%, -50%); }
 
@@ -153,5 +152,26 @@ li {
 
 .fa-heart {
   color: red; }
+
+/* For tablets: */
+@media only screen and (min-width: 600px) {
+  h2 {
+    font-size: 35px; }
+
+  h1 {
+    margin-left: 35px; }
+
+  .welcome {
+    padding-left: 35px; } }
+/* For desktop: */
+@media only screen and (min-width: 800px) {
+  h2 {
+    font-size: 45px; }
+
+  h1 {
+    margin-left: 55px; }
+
+  .welcome {
+    padding-left: 55px; } }
 
 /*# sourceMappingURL=index.css.map */

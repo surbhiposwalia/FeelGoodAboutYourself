@@ -1,5 +1,5 @@
 * {
-    font-family: 'Fira Sans', sans-serif;
+    font-family: 'Architects Daughter', cursive;
 	line-height: 1.5;
 }
 
@@ -14,6 +14,7 @@ body {
 input {
     font-size: 15px;
     border-radius: 5px;
+    margin: 15px;
 }
 
 form {
@@ -21,7 +22,7 @@ form {
 }
 
 h1 {
-    margin-left: 55px;
+    margin-left: 25px;
 }
 
 #top-left {
@@ -73,20 +74,19 @@ nav {
 }
 
 .welcome {
-    padding-left: 60px;
+    padding-left: 25px;
 }
 
 main {
-    position: fixed; /* or absolute */
+    position: fixed;
     top: 50%;
     left: 50%;
-    /* bring your own prefixes */
     transform: translate(-50%, -50%);
     text-align: center;
 }
 
 h2 {
-    font-size: 50px;
+    font-size: 30px;
 }
 
 a {
@@ -125,7 +125,7 @@ li {
   border: 1px solid teal;
   box-shadow: 0 9px #999;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 17px;
 }
 
 .the-button:hover {
@@ -139,8 +139,8 @@ li {
 }
 
 .center {
-    position: fixed; /* or absolute */
-    top: 25%;
+    position: absolute; /* or absolute */
+    top: 35%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -181,4 +181,30 @@ li {
 
 .fa-heart{
     color: red;
+}
+
+/* For tablets: */
+@media only screen and (min-width: 600px) { 
+    h2 {
+        font-size: 35px;
+    }
+    h1{
+       margin-left: 35px; 
+    }
+    .welcome {
+        padding-left: 35px;
+    }
+}
+
+/* For desktop: */
+@media only screen and (min-width: 800px) {
+    h2 {
+        font-size: 45px;
+    }
+     h1{
+       margin-left: 55px; 
+    }
+    .welcome {
+        padding-left: 55px;
+    }
 }
