@@ -1,7 +1,7 @@
-var mongoose = require("mongoose");
-var bcrypt = require("bcryptjs");
+import mongoose from "mongoose";
+import bcrypt from "bcryptjs";
 
-var UserSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
     username: {
         type: String,
         required: true,
@@ -13,7 +13,6 @@ var UserSchema = new mongoose.Schema({
     }
 });
 
-//adds method to every user object
 UserSchema.methods.validatePassword = function(password, callback) {
     bcrypt.compare(password, this.password, function(err, isValid) {
         if (err) {
@@ -24,6 +23,6 @@ UserSchema.methods.validatePassword = function(password, callback) {
     });
 };
 
-var User = mongoose.model("User", UserSchema);
+const User = mongoose.model("User", UserSchema);
 
-module.exports = User;
+export default User;

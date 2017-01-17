@@ -1,10 +1,9 @@
-var express = require('express');
-var bcrypt = require('bcryptjs');
-var jsonParser = require('body-parser').json();
-var User = require('./models/user');
-var errorHandler = require('./index').errorHandler;
+import express from 'express';
+import bcrypt from 'bcryptjs';
+import User from './models/user';
 
-var usersRouter = express.Router();
+const usersRouter = express.Router();
+const jsonParser = require('body-parser').json();
 
 usersRouter.get('/', function(req, res) {
     User.find({}, function(err, users) {
@@ -14,8 +13,8 @@ usersRouter.get('/', function(req, res) {
 });
 
 usersRouter.post('/login', (req, res) => {
-    var username= req.body.username;
-    var password= req.body.password;
+    let username= req.body.username;
+    let password= req.body.password;
     User.findOne({ username: username })
         .then(user => {
             if (!user) return res.sendStatus(401);
@@ -189,10 +188,11 @@ usersRouter.put('/:userId', jsonParser, function(req, res) {
     });
 });
 
-module.exports = usersRouter;
 
 function  errorHandler(res){
    return res.status(500).json({
         message: 'Internal Server Error'
     });
 }
+
+export default usersRouter;

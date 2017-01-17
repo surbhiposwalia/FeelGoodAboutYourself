@@ -4,7 +4,7 @@ import actions from '../redux/actions';
 import {connect} from 'react-redux';
 import StarDisplay from './StarDisplay';
 
-var ThoughtItem = React.createClass({
+const ThoughtItem = React.createClass({
     editThought:function(props){
         var editedThought= this.refs.input.value;
         console.log(editedThought);
@@ -43,5 +43,5 @@ let mapStateToProps= function(state, props){
             stars:state.stars
     };
 };
-var Container = connect(mapStateToProps)(ThoughtItem)
+const Container = connect(mapStateToProps)(ThoughtItem)
 export default Container;

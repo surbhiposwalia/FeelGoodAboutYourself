@@ -1,10 +1,10 @@
-var express = require('express');
-var jsonParser = require('body-parser').json();
-var Thought = require('./models/thought');
-var User = require('./models/user');
+import express from 'express';
+import Thought from './models/thought';
+import User from './models/user';
 
 
-var thoughtsRouter = express.Router();
+const jsonParser = require('body-parser').json();
+const thoughtsRouter = express.Router();
 thoughtsRouter.use(jsonParser);
 
 thoughtsRouter.get('/', function(req, res) {
@@ -184,4 +184,4 @@ function errorHandler(res) {
     });
 }
 
-module.exports = thoughtsRouter;
+export default thoughtsRouter;

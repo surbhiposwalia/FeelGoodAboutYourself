@@ -1,11 +1,10 @@
-var mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-var ThoughtSchema = new mongoose.Schema({
+const ThoughtSchema = new mongoose.Schema({
     thought: {
         type: String,
         required: true
     },
-    //this is the user who wrote the thought
     from: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
