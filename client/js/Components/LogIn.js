@@ -38,7 +38,7 @@ const LogIn= React.createClass({
                         Password: <input className="inputs" type='password' ref='password' placeholder="Enter your password" required />
                     </div>
                     <center>
-                        <input className="fancy-button" type='submit' value='Log In' onClick={this.addUser} />
+                        <input className="fancy-button" type="submit" value='Log In' onClick={this.addUser} />
                     </center>
                     <Error error={this.props.feedback} />
                 </form>

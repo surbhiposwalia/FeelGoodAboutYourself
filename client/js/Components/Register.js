@@ -8,8 +8,8 @@ const Register= React.createClass({
     componentDidMount:function(){
       this.props.dispatch(actions.changeFeedback(''));  
     },
-    addUser: function(){
-
+    addUser: function(event){
+        event.preventDefault();
         let username = this.refs.username.value;
         let password = this.refs.password.value;
         let confirmPassword = this.refs.confirmPassword.value;
@@ -47,7 +47,7 @@ const Register= React.createClass({
                         Confirm Password: <input className="inputs" type='password' ref='confirmPassword' placeholder="Confirm your password" />
                     </div>
                     <center>
-                        <input className="fancy-button" type='submit' value='Register' onClick={this.addUser} />
+                        <input className="fancy-button" type="submit" value='Register' onClick={this.addUser} />
                     </center>
                     <Error error={this.props.feedback} />
                 </form>

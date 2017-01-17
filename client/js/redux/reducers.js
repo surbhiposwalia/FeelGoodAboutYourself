@@ -89,6 +89,7 @@ const thoughtReducer = function(state = initialState, action) {
             });
             
         case actions.FETCH_THOUGHTS_SUCCESS_FROM_USER:
+            console.log('user thoughts'+action.payload);
             return Object.assign({}, state, {
                 userThoughts: action.payload
             });
