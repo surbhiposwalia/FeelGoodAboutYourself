@@ -1,18 +1,11 @@
-# Feel Good 
+# Feel Good About Yourself
 
-A template for developing and deploying full stack JavaScript apps.  Supports ES2015 on the client and server-side.
+An app which randomly generates positive thoughts that users can rate. Users can add, edit, and delete the thoughts in their profile.
+
+* Live Demo: https://infinite-ravine-73596.herokuapp.com/#/?_k=42f42z
+* GitHub: https://github.com/surbhiposwalia/FeelGoodAboutYourself
 
 ## Getting started
-
-### Setting up a project
-
-* Move into your projects directory: `cd ~/YOUR_PROJECTS_DIRECTORY`
-* Clone this repository: `git clone https://github.com/oampo/thinkful-full-stack-template YOUR_PROJECT_NAME`
-* Move into the project directory: `cd YOUR_PROJECT_NAME`
-* Install the dependencies: `npm install`
-* Create a new repo on GitHub: https://github.com/new
-    * Make sure the "Initialize this repository with a README" option is left **un**checked
-* Update the remote to point to your GitHub repository: `git remote set-url origin https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPOSITORY_NAME`
 
 ### Working on the project
 
@@ -49,26 +42,21 @@ Requires the [Heroku CLI client](https://devcenter.heroku.com/articles/heroku-co
 
 * Push your code to Heroku: `git push heroku master`
 
-## Continuous Integration
 
-* Add your repository to [Travis CI](https://travis-ci.org/)
+### Create a new mlab database
 
-## Continuous Deployment
+* Log in to https://mlab.com/
+* Create a new database by pressing Create new
+* On plan, click Single-node
+* Check Sandbox (It's the free one)
+* Scroll down to Database Name and enter your name of choice
+* Press Create new MongoDB deployment
 
-Requires the [Travis CLI client](https://github.com/travis-ci/travis.rb).
+### Link your mlab database to your project
 
-### Setting up CD
-
-* Add the following configuration to `.travis.yml`:
-
-    ```
-    deploy:
-      provider: heroku
-      app: YOUR_HEROKU_APP_NAME
-    ```
-* Add your Heroku API key: `travis encrypt $(heroku auth:token) --add deploy.api_key`
-
-### Deploying using CD
-
-* Push your code to GitHub: `git push origin master`
-
+* On your mlab dashboard, click the database that you would like to use
+* Press Users
+* Press Add database user
+* Type in credentials that you will remember and press Create
+* Copy and paste the link at the top that looks something like this: mongodb://<dbuser>:<dbpassword>@ds117929.mlab.com:17929/dbname
+* In the heroku command line, set the database uri: heroku config:set DATABASE_URI=mongodb://<dbuser>:<dbpassword>@ds117929.mlab.com:17929/dbname
