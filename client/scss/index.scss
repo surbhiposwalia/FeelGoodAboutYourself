@@ -151,7 +151,7 @@ a:active {
 
 .center {
     position: absolute; /* or absolute */
-    top: 35%;
+    top: 52%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 21px;
@@ -198,6 +198,13 @@ a:active {
     .welcome {
         padding-left: 35px;
     }
+    .center {
+        position: absolute; /* or absolute */
+        top: 47%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 21px;
+}
 }
 
 /* For desktop: */
@@ -210,5 +217,12 @@ a:active {
     }
     .welcome {
         padding-left: 55px;
+    }
+    .center {
+        position: absolute; /* or absolute */
+        top: 42%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 21px;
     }
 }

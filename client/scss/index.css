@@ -125,7 +125,7 @@ a:active {
 .center {
   position: absolute;
   /* or absolute */
-  top: 35%;
+  top: 52%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 21px; }
@@ -165,7 +165,15 @@ a:active {
     margin-left: 35px; }
 
   .welcome {
-    padding-left: 35px; } }
+    padding-left: 35px; }
+
+  .center {
+    position: absolute;
+    /* or absolute */
+    top: 47%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 21px; } }
 /* For desktop: */
 @media only screen and (min-width: 800px) {
   h2 {
@@ -175,6 +183,14 @@ a:active {
     margin-left: 55px; }
 
   .welcome {
-    padding-left: 55px; } }
+    padding-left: 55px; }
+
+  .center {
+    position: absolute;
+    /* or absolute */
+    top: 42%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 21px; } }
 
 /*# sourceMappingURL=index.css.map */

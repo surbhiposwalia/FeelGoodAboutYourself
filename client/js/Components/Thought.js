@@ -40,7 +40,7 @@ const Thought = React.createClass({
             return (
                 <div>
                     <nav>
-                        <h1 className="title">Feel Good About Yourself</h1>
+                        <h1 className="title">Reinventing Yourself</h1>
                         <div className="nav-link">
                             <Link id="no-dash" to="/">
                             Home
