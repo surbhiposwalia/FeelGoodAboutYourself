@@ -5,6 +5,8 @@ An app which randomly generates positive thoughts that users can rate. Users can
 * Live Demo: https://infinite-ravine-73596.herokuapp.com/#/?_k=42f42z
 * GitHub: https://github.com/surbhiposwalia/FeelGoodAboutYourself
 
+![Screenshot of Feel Good About Yourself](client/assets/feel-good.jpeg?raw=true "Feel Good About Yourself")
+
 ## Getting started
 
 ### Working on the project
